@@ -1,4 +1,4 @@
-package lv.localhost.MyDay;
+package lv.localhost.MyDay.Controllers;
 
 import java.util.Enumeration;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package lv.localhost.MyDay;
+package lv.localhost.MyDay.Controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

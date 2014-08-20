@@ -1,0 +1,60 @@
+<html>
+<head>
+	<title>Home</title>
+</head>
+<body>
+<table style="width:100%" border =1>
+	<tr>
+		  <td style="width:75%" align="center"> {HEADER} </td>
+		  <td align="right" style="border-color: #ff00ff #ff00aa; 	border-width: 10px;">
+				<form name="input" action="getPostPage" method="post">
+					<input type="text" name="firstname" value="login"><br>
+				       <input type="text" name="lastname" value="password"><br>
+					<input type="submit" value="Submit">
+				</form> 
+		</td>
+	</tr>
+	<tr>
+		<table style="width:100%;" border=1 height=800>
+			<tr>
+				<td width=15%>
+						{empty space}
+				</td>
+				<td width=70%>
+						<table align="top" border=10 width=100% height=100% style="border-color: #ff00ff #ff00ff; vertical-align: text-top;">
+						<tr>
+							<td align="center">
+								{post 1}
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								{post 2}
+							</td>
+						</tr>
+					</table>
+
+				</td>
+				<td width=15% align="top">
+					<table align="top" border=10 height=100% style="border-color: #ff0000 #0000ff; vertical-align: text-top;">
+						<tr align="right">
+							<td align="top ">
+								<form name="input" action="getPostPage" method="post">
+									<input type="text" name="search" value="search">
+									<input type="submit" value="Search">
+								</form> 
+							</td>
+						</tr>
+						<tr>
+							<td>{empty space}</td>
+						</tr>
+					</table>
+
+				</td>	
+			<tr>
+		</table>
+	</tr>
+</table>
+
+</body>
+</html>

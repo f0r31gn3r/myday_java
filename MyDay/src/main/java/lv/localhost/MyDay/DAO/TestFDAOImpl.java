@@ -1,4 +1,4 @@
-package lv.localhost.MyDay;
+package lv.localhost.MyDay.DAO;
 
 
 import java.sql.Connection;

@@ -1,4 +1,4 @@
-package lv.localhost.MyDay;
+package lv.localhost.MyDay.DAO;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,9 +8,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import lv.localhost.MyDay.common.DBException;
+
 public class DAOImpl {
 
-	public static final String DB_CONFIG_FILE = "myday.properties";
+	public static final String DB_CONFIG_FILE = "/lv/localhost/MyDay/common/myday.properties";
 
 	private String dbUrl = null;
 	private String userName = null;
@@ -32,7 +34,7 @@ public class DAOImpl {
 
 	private void initDatabaseConnectionProperties() {
 		Properties properties = new Properties();
-
+		System.out.print(this.getClass());
 		try {
 			InputStream test = this.getClass().getResourceAsStream(
 					DB_CONFIG_FILE);

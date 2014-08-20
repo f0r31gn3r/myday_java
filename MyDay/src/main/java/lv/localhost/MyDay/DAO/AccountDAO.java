@@ -1,4 +1,7 @@
-package lv.localhost.MyDay;
+package lv.localhost.MyDay.DAO;
+
+import lv.localhost.MyDay.Model.Account;
+import lv.localhost.MyDay.common.DBException;
 
 public interface AccountDAO {
 

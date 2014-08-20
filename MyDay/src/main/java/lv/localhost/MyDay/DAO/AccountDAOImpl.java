@@ -1,8 +1,11 @@
-package lv.localhost.MyDay;
+package lv.localhost.MyDay.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+import lv.localhost.MyDay.Model.Account;
+import lv.localhost.MyDay.common.DBException;
 
 public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 	

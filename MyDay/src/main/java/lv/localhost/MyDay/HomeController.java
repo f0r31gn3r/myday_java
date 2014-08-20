@@ -40,6 +40,15 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		
+		try {
+			if ( a.createAccount(new Account(99,"raz","dva","tri")) ){
+				System.out.println("Successfully created new account");
+			}
+				
+		} catch (DBException e) {
+			System.out.println("Exception during new account creation");
+			e.printStackTrace();
+		}
 		
 		String formattedDate = dateFormat.format(date);
 		

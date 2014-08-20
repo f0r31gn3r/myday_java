@@ -34,7 +34,7 @@ public class HomeController {
 		String result = "def";
 		
 		try {
-			result = a.getByName("john");
+			result = a.getByName("Vasyly");
 		} catch (DBException e) {
 			System.out.println("Exception during main loop");
 			e.printStackTrace();

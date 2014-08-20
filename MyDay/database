@@ -93,3 +93,10 @@ ALTER TABLE myday.VISITORS ADD FOREIGN KEY (ACCOUNT_ID) REFERENCES ACCOUNT(ACCOU
 ALTER TABLE myday.LOGIN ADD FOREIGN KEY (ACCOUNT_ID) REFERENCES ACCOUNT(ACCOUNT_ID);
 
 
+--------------------------------------------------------------------------------------
+---		Some dummy data ---
+
+insert into myday.ACCOUNT (NICKNAME,FIRST_NAME, LAST_NAME ) values ('Noob','Vasyly','Pupkin');
+insert into myday.ACCOUNT (NICKNAME,FIRST_NAME, LAST_NAME ) values ('Crazy','Masha','Pupkina');
+insert into myday.ACCOUNT (NICKNAME,FIRST_NAME, LAST_NAME ) values ('Odmen','Anonim','Anonimin');
+

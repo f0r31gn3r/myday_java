@@ -13,7 +13,7 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 		try {
 			connection = getConnection();
 			
-			PreparedStatement preparedStatement = connection.prepareStatement("select * from Account where first_name = ?");
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from ACCOUNT where first_name = ?");
 			preparedStatement.setString(1, name);
 			
 			ResultSet resultSet = preparedStatement.executeQuery();

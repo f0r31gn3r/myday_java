@@ -12,7 +12,5 @@ public interface PostDAO {
 	boolean updatePost(Post p) throws DBException;
 	
 	Post findPosts(int postID) throws DBException;
-	//String findPost(int postID) throws DBException;
-	
 
 }

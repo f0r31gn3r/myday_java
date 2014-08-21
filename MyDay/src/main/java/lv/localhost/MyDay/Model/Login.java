@@ -10,13 +10,13 @@ public class Login {
 	private Date date;
 
 	public Login(int acc, String user, String pass, Date created, Date date) {
-		accountID = acc;
-		username = user;
-		password = pass;
-		this.created = created;
-		this.date = date;
+		setAccountID(acc);
+		setUsername(user);
+		setPassword(pass);
+		setCreated(created);
+		setDate(date);
 	}
-	
+
 	public Login(String user, String pass) {
 		username = user;
 		password = pass;

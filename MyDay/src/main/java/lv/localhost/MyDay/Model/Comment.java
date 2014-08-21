@@ -13,11 +13,12 @@ public class Comment {
 		
 	}
 	
-	public Comment (int commentID, int postID, int author, String body) {
+	public Comment (int commentID, int postID, int author, String body, Date created) {
 		setCommentID(commentID);
 		setPostID(postID);
 		setAuthor(author);
 		setBody(body);
+		setCreated(created);
 	}
 	
 	public int getCommentID() {

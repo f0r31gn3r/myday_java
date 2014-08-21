@@ -8,18 +8,19 @@
 <h1>
 	 Authorization:
 </h1>
-	${badlogin}
+<div><P> <font color=\"red\">${badlogin}</font></p></div>
 
 <%	if (session.getAttribute("user") == null) {
 %>
-<form name="input" action="getPostPage" method="post">
+<form name="input" action="authorization" method="post">
 	Login:    <input type="text" name="login"><br>
 	Password: <input type="password" name="password"><br>
 	<input type="submit" value="Sign In">
 </form> 
 <%}
 else {%>
-	<P> Logged as <c:out value="${user}" /> </P>
+	<P> Logged as <c:out value="[${user}]" /> </P>
+	<a href="authorization?logout=true">Log Out</a>
 <% } %>
 </body>
 </html>

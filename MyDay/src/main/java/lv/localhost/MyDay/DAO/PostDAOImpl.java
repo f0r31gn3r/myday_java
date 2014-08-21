@@ -21,11 +21,10 @@ public class PostDAOImpl extends DAOImpl implements PostDAO{
 			
 			java.sql.Date sqlDate = new java.sql.Date(System.currentTimeMillis());
 			
-			PreparedStatement preparedStatement = connection.prepareStatement("insert into POSTS (TITLE, AUTHOR, BODY, CREATED ) values (?,?,?,?)");
+			PreparedStatement preparedStatement = connection.prepareStatement("insert into POSTS (TITLE, AUTHOR, BODY, CREATED ) values (?,?,?,NOW())");
 			preparedStatement.setString(1, p.getTitle());
 			preparedStatement.setInt(2, p.getAuthorID());
 			preparedStatement.setString(3, p.getBody());
-			preparedStatement.setDate(4, sqlDate);
 			
 			createdRowCount = preparedStatement.executeUpdate();
 			
@@ -33,8 +32,11 @@ public class PostDAOImpl extends DAOImpl implements PostDAO{
 			
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
-			if (resultSet.next())
+			if (resultSet.next()){
 				p.setPostID(resultSet.getInt(1));
+				p.setCreated(resultSet.getTimestamp(3));
+				System.out.println(p.getCreated());
+			}
 			
 			p.setCreated(sqlDate);
 			
@@ -83,14 +85,11 @@ public class PostDAOImpl extends DAOImpl implements PostDAO{
 		try {
 			connection = getConnection();
 			
-			java.sql.Date sqlDate = new java.sql.Date(System.currentTimeMillis());
-			
-			PreparedStatement preparedStatement = connection.prepareStatement("update POSTS set TITLE = ?, AUTHOR = ?, BODY = ?, LAST_MODIFIED = ? where POST_ID = ?");
+			PreparedStatement preparedStatement = connection.prepareStatement("update POSTS set TITLE = ?, AUTHOR = ?, BODY = ?, LAST_MODIFIED = NOW() where POST_ID = ?");
 			preparedStatement.setString(1, p.getTitle());
 			preparedStatement.setInt(2, p.getAuthorID());
 			preparedStatement.setString(3, p.getBody());
-			preparedStatement.setDate(4, sqlDate);
-			preparedStatement.setInt(5, p.getPostID());
+			preparedStatement.setInt(4, p.getPostID());
 			
 			createdRowCount = preparedStatement.executeUpdate();
 			
@@ -134,34 +133,4 @@ public class PostDAOImpl extends DAOImpl implements PostDAO{
 		}
 		return result;
 	}
-
-/*	@Override
-	public String findPost(int postID) throws DBException {
-		Connection connection = null;
-		String result ="";
-		
-		try {
-			connection = getConnection();
-			
-			PreparedStatement preparedStatement = connection.prepareStatement("select * from POSTS where POST_ID = ?");
-			preparedStatement.setInt(1, postID);
-			
-			ResultSet resultSet = preparedStatement.executeQuery();
-			
-			if (resultSet.next()){
-				result = resultSet.getInt(1) + " " + resultSet.getString(2)  + " " +
-						resultSet.getInt(3) + " " + resultSet.getString(4)  + " " +
-						resultSet.getInt(5) + " " + resultSet.getString(6);
-			}		
-		} catch (Throwable e) {
-			System.out.println("Exception while execute PostDAOImpl.createPost() ");
-			e.printStackTrace();
-			throw new DBException(e);
-		}
-		finally {
-			closeConnection(connection);
-		}
-		return result;
-	}
-*/
 }

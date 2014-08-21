@@ -21,7 +21,7 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 			connection = getConnection();
 
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("insert into COMMENTS (POST_ID, AUTHOR, BODY, CREATED) values (?,?,?, NOW())");
+					.prepareStatement("INSERT INTO COMMENTS (POST_ID, AUTHOR, BODY, CREATED) VALUES (?,?,?, NOW())");
 			preparedStatement.setInt(1, postID);
 			preparedStatement.setInt(2, author);
 			preparedStatement.setString(3, body);
@@ -30,7 +30,7 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 
 		} catch (Throwable e) {
 			System.out
-					.println("Exception while execute AccountDAOImpl.getByName() ");
+					.println("Exception while execute CommentDAOImpl.createComment() ");
 			e.printStackTrace();
 			throw new DBException(e);
 		} finally {
@@ -55,7 +55,7 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 
 		} catch (Throwable e) {
 			System.out
-					.println("Exception while execute AccountDAOImpl.getByName() ");
+					.println("Exception while execute CommentDAOImpl.removeComment() ");
 			e.printStackTrace();
 			throw new DBException(e);
 		} finally {
@@ -68,6 +68,7 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 	public Comment getCommentByID(int commentID) throws DBException {
 		Connection connection = null;
 		Comment temp;
+		
 		try {
 			connection = getConnection();
 
@@ -81,7 +82,7 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 
 		} catch (Throwable e) {
 			System.out
-					.println("Exception while execute AccountDAOImpl.getCommentByID() ");
+					.println("Exception while execute CommentDAOImpl.getCommentByID() ");
 			e.printStackTrace();
 			throw new DBException(e);
 		} finally {

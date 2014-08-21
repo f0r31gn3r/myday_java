@@ -5,27 +5,27 @@ import java.util.Date;
 public class Visit {
 	
 	private String url;
-	private String from;
+	private String referer;
 	private Date timestamp;
 	private int accountID;
 
 	public Visit(String url, String from) {
 		setUrl(url);
-		setFrom(from);
+		setReferer(from);
 		setTimestamp(new Date());
 		setAccountID(0);
 	}
 	
 	public Visit(String url, String from, Date timestamp) {
 		setUrl(url);
-		setFrom(from);
+		setReferer(from);
 		setTimestamp(timestamp);
 		setAccountID(0);
 	}
 	
 	public Visit(String url, String from, Date timestamp, int accountID) {
 		setUrl(url);
-		setFrom(from);
+		setReferer(from);
 		setTimestamp(timestamp);
 		setAccountID(accountID);
 	}
@@ -38,12 +38,12 @@ public class Visit {
 		this.url = url;
 	}
 
-	public String getFrom() {
-		return from;
+	public String getReferer() {
+		return referer;
 	}
 
-	public void setFrom(String from) {
-		this.from = from;
+	public void setReferer(String referer) {
+		this.referer = referer;
 	}
 
 	public Date getTimestamp() {

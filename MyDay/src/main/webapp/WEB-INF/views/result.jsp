@@ -8,8 +8,8 @@
 <h1>
 	Get/Post Result
 </h1>
-<P>  firstname is ${firstname}. </P>
-<P>  lastname is ${lastname}. </P>
+<P>  login is ${login}. </P>
+<P>  password is ${password}. </P>
 
 </body>
 </html>

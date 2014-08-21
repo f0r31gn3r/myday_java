@@ -7,7 +7,7 @@ import lv.localhost.MyDay.common.DBException;
 
 public interface CommentDAO {
 
-	boolean createComment(int postID, int author, String body)
+	int createComment(int postID, int author, String body)
 			throws DBException;
 
 	boolean removeComment(int commentID) throws DBException;

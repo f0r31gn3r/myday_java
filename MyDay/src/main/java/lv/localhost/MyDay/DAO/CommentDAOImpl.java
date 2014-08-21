@@ -12,8 +12,9 @@ import lv.localhost.MyDay.common.DBException;
 public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 
 	@Override
-	public boolean createComment(int postID, int author, String body)
+	public int createComment(int postID, int author, String body)
 			throws DBException {
+		int commentID = 0;
 		Connection connection = null;
 		int createdRowCount = 0;
 
@@ -28,6 +29,17 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 
 			createdRowCount = preparedStatement.executeUpdate();
 
+			if (createdRowCount == 1) {
+				preparedStatement = connection
+						.prepareStatement("SELECT LAST_INSERT_ID()");
+				ResultSet rs = preparedStatement.executeQuery();
+				if (rs.next()) {
+					commentID = rs.getInt(1);
+				}
+				rs.close();
+			}
+			preparedStatement.close();
+
 		} catch (Throwable e) {
 			System.out
 					.println("Exception while execute CommentDAOImpl.createComment() ");
@@ -36,7 +48,7 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 		} finally {
 			closeConnection(connection);
 		}
-		return (createdRowCount > 0 ? true : false);
+		return commentID;
 	}
 
 	@Override
@@ -68,7 +80,7 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 	public Comment getCommentByID(int commentID) throws DBException {
 		Connection connection = null;
 		Comment temp;
-		
+
 		try {
 			connection = getConnection();
 

@@ -10,11 +10,39 @@
 </h1>
 
 <form name="input" action="registration" method="post">
-	Username : <input type="text" name="username" ><br>
-	Password : <input type="password" name="password"><br>
-	<input type="submit" value="Register">
+  <table>
+  	<tr>
+  		<td>User Name:</td>
+  		<td><input type="text" name="username" value=""></td>
+  	</tr>	
+   	<tr>
+   	  	<td>Password:</td>
+  		<td> <input type="password" name="password" value=""></td>
+  	</tr> 
+  	<tr>
+  		<td>-</td>
+  		<td>-</td>
+  	</tr>  	
+    <tr>
+   	  	<td>Nickname:</td>
+  		<td> <input type="text" name="nickname" value=""></td>
+  	</tr>
+    <tr>
+   	  	<td>First Name:</td>
+  		<td><input type="text" name="firstname" value=""></td>
+  	</tr> 
+    <tr>
+   	  	<td>Last Name:</td>
+  		<td><input type="text" name="lastname" value=""></td>
+  	</tr>
+    <tr>
+  		<td>-</td>
+  		<td>-</td>
+  	</tr> 
+  </table>	
+	<input type="submit" value="Register"> | <a href="/MyDay/">Go Home</a><br>
 </form> 
-<a href="home">Go Home</a> page<br>
+
 
 </body>
 </html>

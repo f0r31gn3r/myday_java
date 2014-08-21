@@ -5,6 +5,6 @@
 	<title>Home</title>
 </head>
 <body>
-<P>  Test is ${test}. </P>
+<P>  Look for Model, Request, Parameter and Session data in your console </P>
 </body>
 </html>

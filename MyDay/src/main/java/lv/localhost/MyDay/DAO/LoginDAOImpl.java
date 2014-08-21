@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,9 +96,13 @@ public class LoginDAOImpl extends DAOImpl implements LoginDAO {
 
 			pStmt.executeUpdate();
 
-			// conn.commit();
-
 		} catch (Throwable e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			System.out
 					.println("Exception while execute LoginDAOImpl.newAccount() ");
 			e.printStackTrace();
@@ -303,6 +308,12 @@ public class LoginDAOImpl extends DAOImpl implements LoginDAO {
 			pStmt.executeUpdate();
 
 		} catch (Throwable e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			System.out
 					.println("Exception while execute LoginDAOImpl.updatePassword() ");
 			e.printStackTrace();

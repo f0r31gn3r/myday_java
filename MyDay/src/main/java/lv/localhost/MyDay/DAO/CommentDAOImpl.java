@@ -111,7 +111,7 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 
 		} catch (Throwable e) {
 			System.out
-					.println("Exception while execute AccountDAOImpl.getByName() ");
+					.println("Exception while execute CommentDAOImpl.getCommentList() ");
 			e.printStackTrace();
 			throw new DBException(e);
 		} finally {

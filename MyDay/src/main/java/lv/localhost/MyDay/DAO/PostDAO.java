@@ -7,13 +7,12 @@ public interface PostDAO {
 	
 	boolean createPost(Post p) throws DBException;
 	
-	boolean removePost(Post p) throws DBException;
 	boolean removePost(int postID) throws DBException;
 	
 	boolean updatePost(Post p) throws DBException;
 	
-	String findPost(Post p) throws DBException;
-	String findPost(int postID) throws DBException;
+	Post findPosts(int postID) throws DBException;
+	//String findPost(int postID) throws DBException;
 	
 
 }

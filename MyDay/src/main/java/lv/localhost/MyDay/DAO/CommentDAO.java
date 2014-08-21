@@ -7,12 +7,13 @@ import lv.localhost.MyDay.common.DBException;
 
 public interface CommentDAO {
 
-	boolean createComment(Comment c) throws DBException;
-	boolean createComment(int postID, int author, String body) throws DBException;
-	
-	boolean removeComment(Comment c) throws DBException;
+	boolean createComment(int postID, int author, String body)
+			throws DBException;
+
 	boolean removeComment(int commentID) throws DBException;
 
 	Comment getCommentByID(int commentID) throws DBException;
-	List<Comment> getCommentList(int postID);
+
+	List<Comment> getCommentList(int postID) throws DBException;
+
 }

@@ -13,5 +13,6 @@
 <P>  Test is ${test}. </P>
 <a href="dosomething">do something</a> page<br>
 <a href="authorization">authorization</a> page<br>
+<a href="visit">visit register</a> page<br>
 </body>
 </html>

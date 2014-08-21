@@ -8,14 +8,14 @@
 <h1>
 	 Authorization:
 </h1>
-<div><P> <font color=\"red\">${badlogin}</font></p></div>
+<div><P> <font color="red">${badlogin}</font></p></div>
 
 <%	if (session.getAttribute("user") == null) {
 %>
 <form name="input" action="authorization" method="post">
-	Login:    <input type="text" name="login"><br>
-	Password: <input type="password" name="password"><br>
-	<input type="submit" value="Sign In">
+	<input type="text" name="login" value="login" onclick="if(this.value == 'login') {this.value=''}"><br>
+	<input type="password" name="password" value="password" onclick="if(this.value == 'password') {this.value=''}"><br>
+	<input type="submit" value="Sign In"> | <a href="registration"> Sign Up</a>
 </form> 
 <%}
 else {%>

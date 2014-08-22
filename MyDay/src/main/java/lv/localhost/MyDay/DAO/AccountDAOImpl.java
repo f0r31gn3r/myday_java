@@ -10,24 +10,23 @@ import lv.localhost.MyDay.common.DBException;
 public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 	
 	@Override
-	public String getByName(String name) throws DBException{
+	public int getIDByName(String login) throws DBException{
 		Connection connection = null;
-		String result ="";
+		int result =0;
 		
 		try {
 			connection = getConnection();
 			
-			PreparedStatement preparedStatement = connection.prepareStatement("select * from ACCOUNT where first_name = ?");
-			preparedStatement.setString(1, name);
+			PreparedStatement preparedStatement = connection.prepareStatement("select ACCOUNT_ID from ACCOUNT where upper(LOGIN) = ?");
+			preparedStatement.setString(1, login.toUpperCase() );
 			
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			if (resultSet.next()){
-				result =resultSet.getInt(1) + " " + resultSet.getString(2)  + " " +
-						resultSet.getString(3) + " " + resultSet.getString(4);
+				result =resultSet.getInt(1);
 			}		
 		} catch (Throwable e) {
-			System.out.println("Exception while execute AccountDAOImpl.getByName() ");
+			System.out.println("Exception while execute AccountDAOImpl.getIDByName() ");
 			e.printStackTrace();
 			throw new DBException(e);
 		}
@@ -38,38 +37,85 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 	}
 
 	@Override
-	public boolean createAccount(Account a) throws DBException {
+	public int createAccount(Account a) throws DBException {
 		Connection connection = null;
-		boolean result = false;
+		int result =  0;
+		
 		int createdRowCount=0;
 		
 		try {
 			connection = getConnection();
 			
-			PreparedStatement preparedStatement = connection.prepareStatement("insert into ACCOUNT (NICKNAME,FIRST_NAME, LAST_NAME ) values (?,?,?)");
-			preparedStatement.setString(1, a.getNickname());
-			preparedStatement.setString(2, a.getFirstName());
-			preparedStatement.setString(3, a.getLastName());
+			PreparedStatement preparedStatement = connection.prepareStatement("insert into ACCOUNT (LOGIN, PASSWORD, FIRST_NAME, LAST_NAME  ) values (?,?,?,?)");
+			preparedStatement.setString(1, a.getLogin());
+			preparedStatement.setString(2, a.getPassword());
+			preparedStatement.setString(3, a.getFirstName());
+			preparedStatement.setString(4, a.getLastName());
+			
 			
 			createdRowCount = preparedStatement.executeUpdate();
 			
+			if (createdRowCount == 1) {
+				preparedStatement = connection
+					.prepareStatement("select LAST_INSERT_ID()");
+
+				ResultSet rs = preparedStatement.executeQuery();
+				if (rs.next()){
+					result = rs.getInt(1);
+				}
+			}
 	
 		} catch (Throwable e) {
-			System.out.println("Exception while execute AccountDAOImpl.getByName() ");
+			System.out.println("Exception while execute AccountDAOImpl.createAccount(Account a) ");
 			e.printStackTrace();
 			throw new DBException(e);
 		}
 		finally {
 			closeConnection(connection);
 		}
-		return (createdRowCount > 0 ? true : false);
+		return result;
 	}
 
 	@Override
-	public boolean createAccount(String nickName, String firstName,
-			String lastName) throws DBException {
-		// TODO Auto-generated method stub
-		return false;
+	public int createAccount(String login, String password,  
+			String firstName, String lastName) throws DBException {
+		
+		Connection connection = null;
+		int result =  0;
+		
+		int createdRowCount=0;
+		
+		
+		try {
+			connection = getConnection();
+			
+			PreparedStatement preparedStatement = connection.prepareStatement("insert into ACCOUNT (LOGIN, PASSWORD, FIRST_NAME, LAST_NAME  ) values (?,?,?,?)");
+			preparedStatement.setString(1, login);
+			preparedStatement.setString(2, password);
+			preparedStatement.setString(3, firstName);
+			preparedStatement.setString(4, lastName);
+			
+			createdRowCount = preparedStatement.executeUpdate();
+			
+			if (createdRowCount == 1) {
+				preparedStatement = connection
+					.prepareStatement("select LAST_INSERT_ID()");
+
+				ResultSet rs = preparedStatement.executeQuery();
+				if (rs.next()){
+					result = rs.getInt(1);
+				}
+			}
+	
+		} catch (Throwable e) {
+			System.out.println("Exception while execute AccountDAOImpl.createAccount(Account a) ");
+			e.printStackTrace();
+			throw new DBException(e);
+		}
+		finally {
+			closeConnection(connection);
+		}
+		return result;
 	}
 
 	@Override
@@ -97,7 +143,7 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 	}
 
 	@Override
-	public boolean updateAccount(int accountID, String nickname,
+	public boolean updateAccount(int accountID, String login, String password,
 			String firstName, String lastName) throws DBException {
 		// TODO Auto-generated method stub
 		return false;
@@ -114,5 +160,33 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public boolean accountExists(String login) throws DBException {
+		Connection connection = null;
+		boolean result =  false;
+		
+		try {
+			connection = getConnection();
+			
+			PreparedStatement preparedStatement = connection.prepareStatement("select count(1) from ACCOUNT where login =?");
+			preparedStatement.setString(1, login);
+			
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			if (rs.next()) {
+				result = ( rs.getInt(1) == 0 ? false : true);				
+			}
+	
+		} catch (Throwable e) {
+			System.out.println("Exception while execute AccountDAOImpl.accountExists(String login) ");
+			e.printStackTrace();
+			throw new DBException(e);
+		}
+		finally {
+			closeConnection(connection);
+		}
+		return result;	}
 
 }

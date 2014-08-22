@@ -35,19 +35,28 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
 		AccountDAOImpl a = new AccountDAOImpl();
-		String result = "def";
+		int result = 0;
 		
 		try {
-			result = a.getByName("Vasyly");
+			result = a.getIDByName("Noob");
 		} catch (DBException e) {
 			System.out.println("Exception during main loop");
 			e.printStackTrace();
 		}
 		
 		try {
-			if ( a.createAccount(new Account(99,"raz","dva","tri")) ){
-				System.out.println("Successfully created new account");
-			}
+				Account acc = new Account(99,"raz","dva","tri","password");
+				if ( a.accountExists( acc.getLogin() )){
+					System.out.println("Such account already exists");
+				}
+				else{
+						int accountIDInBase  =a.createAccount(acc);
+					if (  accountIDInBase > 0){
+						System.out.println("Successfully created new account, id=" + accountIDInBase);
+					}
+				}
+						
+			
 				
 		} catch (DBException e) {
 			System.out.println("Exception during new account creation");

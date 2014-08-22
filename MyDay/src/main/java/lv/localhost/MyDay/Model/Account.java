@@ -3,7 +3,8 @@ package lv.localhost.MyDay.Model;
 public class Account {
 	
 	private int accountID;
-	private String nickName;
+	private String login;
+	private String password;
 	private String firstName;
 	private String lastName;
 	
@@ -11,9 +12,10 @@ public class Account {
 		
 	}
 
-	public Account(int id, String nickName, String firstName, String lastName  ){
+	public Account(int id, String login, String password, String firstName, String lastName  ){
 		setAccountID(id);
-		setNickname(nickName);
+		setLogin(login);
+		setPassword(password);
 		setFirstName(firstName);
 		setLastName(lastName);
 	}
@@ -25,11 +27,11 @@ public class Account {
 		this.accountID = accountID;
 	}
 	
-	public String getNickname() {
-		return nickName;
+	public String getLogin() {
+		return login;
 	}
-	public void setNickname(String nickname) {
-		this.nickName = nickname;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 	
 	public String getFirstName() {
@@ -43,6 +45,14 @@ public class Account {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	

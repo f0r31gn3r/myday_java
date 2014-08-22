@@ -5,7 +5,7 @@ commit;
 
 CREATE SCHEMA `myday` ;
 
--- Create Table: LOGIN
+-- Create Table: ACCOUNT
 
 
 
@@ -13,8 +13,8 @@ CREATE TABLE myday.ACCOUNT
 (
 	`ACCOUNT_ID` INT NOT NULL AUTO_INCREMENT
 	,PRIMARY KEY (ACCOUNT_ID)
-	,`PASSWORD` VARCHAR(30)  NULL 
-	,`LOGIN` VARCHAR(30)  NULL 
+	,`LOGIN` VARCHAR(30)  NULL UNIQUE
+	,`PASSWORD` VARCHAR(30)  NULL
 	,`FIRST_NAME` VARCHAR(50)  NULL 
 	,`LAST_NAME` VARCHAR(50)  NULL 
 	,`CREATED` DATETIME  NULL 
@@ -90,7 +90,7 @@ ENGINE=INNODB;
 -- ALTER TABLE myday.LOGIN ADD FOREIGN KEY (ACCOUNT_ID) REFERENCES ACCOUNT(ACCOUNT_ID);
 
 
---------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 ---		Some dummy data ---
 
 insert into myday.ACCOUNT (LOGIN,FIRST_NAME, LAST_NAME, PASSWORD ) values ('Noob','Vasyly','Pupkin', '123');

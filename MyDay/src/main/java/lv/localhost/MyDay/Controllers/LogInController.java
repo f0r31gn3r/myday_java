@@ -3,7 +3,7 @@ package lv.localhost.MyDay.Controllers;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import lv.localhost.MyDay.DAO.LoginDAOImpl;
+import lv.localhost.MyDay.DAO.AccountDAOImpl;
 import lv.localhost.MyDay.common.DBException;
 
 import org.springframework.stereotype.Controller;
@@ -18,36 +18,34 @@ public class LogInController {
 	public String authorizationGet(Model model, HttpServletRequest request,
 			HttpSession session) {
 		
-		System.out.println("D6");	
 		
         if (request.getParameter("logout") != null)
-        	if (request.getParameter("logout").equals("true")){
-        		System.out.println("D7");
+        	if (request.getParameter("logout").equals("true")){	
         		session.invalidate();
         	}
         		
-        
-		return "redirect";
+		return "home";
 	}
 	
 	@RequestMapping(value = "/authorization", method = RequestMethod.POST)
 	public String authorizationPost(Model model, HttpServletRequest request,
 			HttpSession session) {
 		/*** logging in ***/
-		System.out.println("D1");
 		if (session.getAttribute("user") == null) {
 			
-			boolean loginAttempt;
-			loginAttempt = true;
-			System.out.println("D2");
+			boolean loginAttempt = false;
+			try {
+				loginAttempt = new AccountDAOImpl().accountExists(request.getParameter("login"), request.getParameter("password"));
+			} catch (DBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			if (loginAttempt) {
-				System.out.println("D3");
 				session.setAttribute("user", request.getParameter("login"));
-				return "redirect"; // We have authorized user and redirect it to previous page 
+				return "home"; 
 			} else {
-				System.out.println("D4");
 				model.addAttribute("authorization_message", "Wrong login or password");
-				return "authorization"; // redirect to login page in order to display error message
+				return "home";
 			}
 
 			
@@ -66,7 +64,7 @@ public class LogInController {
 
 		}
 
-		return "redirect";
+		return "home";
 	}
 
 }

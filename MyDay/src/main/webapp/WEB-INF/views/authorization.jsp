@@ -3,16 +3,40 @@
 <html>
 <head>
 	<title>Home</title>
+	<style>
+	.error {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+#login-box {
+	width: 300px;
+	padding: 20px;
+	margin: 100px auto;
+	background: #fff;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border: 1px solid #000;
+}
+</style>
 </head>
 <body>
 <h1>
 	 Authorization:
 </h1>
 <div><P> <font color="red">${badlogin}</font></p></div>
-
+<div id="login-box">
 <%	if (session.getAttribute("user") == null) {
 %>
 <form name="input" action="authorization" method="post">
+<c:if test="${not empty authorization_message}">
+			<div class="error">${authorization_message}</div>
+		</c:if>
+
 	<input type="text" name="login" value="login" onclick="if(this.value == 'login') {this.value=''}"><br>
 	<input type="password" name="password" value="password" onclick="if(this.value == 'password') {this.value=''}"><br>
 	<input type="submit" value="Sign In"> | <a href="registration"> Sign Up</a>
@@ -22,5 +46,6 @@ else {%>
 	<P> Logged as <c:out value="[${user}]" /> </P>
 	<a href="authorization?logout=true">Log Out</a>
 <% } %>
+</div>
 </body>
 </html>

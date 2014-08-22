@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" session="true"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
@@ -48,7 +48,7 @@
 			<tr>
 				<td><form:label path="body">Body</form:label></td>
 				<td><form:textarea rows="4" cols="50" id="body" path="body"
-						maxlength="1000" /></td>
+						maxlength="200" /></td>
 				<td><input type="submit" value="Submit" /></td>
 			</tr>
 		</table>

@@ -1,7 +1,5 @@
 package lv.localhost.MyDay.Controllers;
 
-import java.util.Enumeration;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -20,28 +18,36 @@ public class LogInController {
 	public String authorizationGet(Model model, HttpServletRequest request,
 			HttpSession session) {
 		
+		System.out.println("D6");	
+		
         if (request.getParameter("logout") != null)
-        	if (request.getParameter("logout").equals("true"))
+        	if (request.getParameter("logout").equals("true")){
+        		System.out.println("D7");
         		session.invalidate();
+        	}
+        		
         
-		return "authorization";
+		return "redirect";
 	}
 	
 	@RequestMapping(value = "/authorization", method = RequestMethod.POST)
 	public String authorizationPost(Model model, HttpServletRequest request,
 			HttpSession session) {
 		/*** logging in ***/
-
+		System.out.println("D1");
 		if (session.getAttribute("user") == null) {
 			
-
 			boolean loginAttempt;
 			loginAttempt = true;
-
+			System.out.println("D2");
 			if (loginAttempt) {
+				System.out.println("D3");
 				session.setAttribute("user", request.getParameter("login"));
+				return "redirect"; // We have authorized user and redirect it to previous page 
 			} else {
+				System.out.println("D4");
 				model.addAttribute("authorization_message", "Wrong login or password");
+				return "authorization"; // redirect to login page in order to display error message
 			}
 
 			
@@ -60,7 +66,7 @@ public class LogInController {
 
 		}
 
-		return "authorization";
+		return "redirect";
 	}
 
 }

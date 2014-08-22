@@ -3,7 +3,6 @@ package lv.localhost.MyDay.DAO;
 import java.util.List;
 
 import lv.localhost.MyDay.Model.Account;
-import lv.localhost.MyDay.Model.Login;
 import lv.localhost.MyDay.common.DBException;
 
 public interface AccountDAO {

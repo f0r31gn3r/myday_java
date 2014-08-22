@@ -3,9 +3,7 @@ package lv.localhost.MyDay.Controllers;
 import javax.servlet.http.HttpServletRequest;
 
 import lv.localhost.MyDay.DAO.CommentDAOImpl;
-import lv.localhost.MyDay.DAO.PostDAOImpl;
 import lv.localhost.MyDay.Model.Comment;
-import lv.localhost.MyDay.Model.Post;
 import lv.localhost.MyDay.common.DBException;
 
 import org.springframework.stereotype.Controller;
@@ -63,33 +61,4 @@ public class CommentController {
 		return "comment_deleted";
 	}
 
-	/* *
-	 * 
-	 * @RequestMapping(value="/edit_post/{postID}", method = RequestMethod.GET)
-	 * public ModelAndView editForm(@PathVariable ("postID") int postID,
-	 * HttpServletRequest request, Model model) throws DBException{
-	 * 
-	 * p = new Post(); PostDAOImpl i = new PostDAOImpl(); p =
-	 * i.findPosts(postID);
-	 * 
-	 * model.addAttribute("postid", p.getPostID());
-	 * 
-	 * return new ModelAndView("edit_post", "edit", p);
-	 * 
-	 * }
-	 * 
-	 * @RequestMapping(value="/edited", method = RequestMethod.POST) public
-	 * String editPost(@ModelAttribute ("edit_post") Post p, ModelMap model)
-	 * throws DBException{
-	 * 
-	 * PostDAOImpl i = new PostDAOImpl(); p.setPostID(this.p.getPostID());
-	 * i.updatePost(p);
-	 * 
-	 * model.addAttribute("posttitle", p.getTitle());
-	 * model.addAttribute("postid", p.getPostID());
-	 * 
-	 * return "edited";
-	 * 
-	 * }
-	 */
 }

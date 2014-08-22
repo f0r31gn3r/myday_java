@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import lv.localhost.MyDay.DAO.AccountDAOImpl;
-import lv.localhost.MyDay.Model.Account;
 import lv.localhost.MyDay.common.DBException;
 
 import org.slf4j.Logger;
@@ -44,26 +43,6 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		
-		try {
-				Account acc = new Account(99,"raz","dva","tri","paSSword");
-				if ( a.accountExists( acc.getLogin() )){
-					System.out.println("Such account already exists");
-				}
-				else{
-						int accountIDInBase  =a.createAccount(acc);
-					if (  accountIDInBase > 0){
-						System.out.println("Successfully created new account, id=" + accountIDInBase);
-					}
-				}
-				
-				System.out.println("Checking password 'password' for account 'raz' :" + a.accountExists( acc.getLogin(), acc.getPassword() ) );
-						
-			
-				
-		} catch (DBException e) {
-			System.out.println("Exception during new account creation");
-			e.printStackTrace();
-		}
 		
 		String formattedDate = dateFormat.format(date);
 		

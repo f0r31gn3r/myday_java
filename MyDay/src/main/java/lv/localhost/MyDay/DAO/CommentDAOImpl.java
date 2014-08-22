@@ -79,7 +79,7 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 	@Override
 	public Comment getCommentByID(int commentID) throws DBException {
 		Connection connection = null;
-		Comment temp;
+		Comment temp = null;
 
 		try {
 			connection = getConnection();

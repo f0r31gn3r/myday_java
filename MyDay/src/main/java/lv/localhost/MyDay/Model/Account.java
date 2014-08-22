@@ -1,5 +1,7 @@
 package lv.localhost.MyDay.Model;
 
+import java.sql.Date;
+
 public class Account {
 	
 	private int accountID;
@@ -7,6 +9,8 @@ public class Account {
 	private String password;
 	private String firstName;
 	private String lastName;
+	private Date created;
+	private Date lastVisited;	
 	
 	public Account(){
 		
@@ -14,10 +18,28 @@ public class Account {
 
 	public Account(int id, String login, String password, String firstName, String lastName  ){
 		setAccountID(id);
+		
 		setLogin(login);
 		setPassword(password);
+		
 		setFirstName(firstName);
 		setLastName(lastName);
+		
+		setCreated(null);
+		setLastVisited(null);
+	}
+	
+	public Account(int id, String login, String password, String firstName, String lastName, Date created, Date lastVisited  ){
+		setAccountID(id);
+		
+		setLogin(login);
+		setPassword(password);
+		
+		setFirstName(firstName);
+		setLastName(lastName);
+		
+		setCreated(created);
+		setLastVisited(lastVisited);
 	}
 	
 	public int getAccountID() {
@@ -53,6 +75,22 @@ public class Account {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public Date getLastVisited() {
+		return lastVisited;
+	}
+
+	public void setLastVisited(Date lastVisited) {
+		this.lastVisited = lastVisited;
 	}
 	
 	

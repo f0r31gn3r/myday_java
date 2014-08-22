@@ -38,14 +38,14 @@ public class HomeController {
 		int result = 0;
 		
 		try {
-			result = a.getIDByName("Noob");
+			result = a.getIDByLogin("Noob");
 		} catch (DBException e) {
 			System.out.println("Exception during main loop");
 			e.printStackTrace();
 		}
 		
 		try {
-				Account acc = new Account(99,"raz","dva","tri","password");
+				Account acc = new Account(99,"raz","dva","tri","paSSword");
 				if ( a.accountExists( acc.getLogin() )){
 					System.out.println("Such account already exists");
 				}
@@ -55,6 +55,8 @@ public class HomeController {
 						System.out.println("Successfully created new account, id=" + accountIDInBase);
 					}
 				}
+				
+				System.out.println("Checking password 'password' for account 'raz' :" + a.accountExists( acc.getLogin(), acc.getPassword() ) );
 						
 			
 				

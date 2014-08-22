@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <html>
 <head>
 	<title>Home</title>
@@ -14,5 +14,8 @@
 <a href="dosomething">do something</a> page<br>
 <a href="authorization">authorization</a> page<br>
 <a href="visit">visit register</a> page<br>
+<br/> 
+Include test :
+<%@include file="authorization.jsp" %>
 </body>
 </html>

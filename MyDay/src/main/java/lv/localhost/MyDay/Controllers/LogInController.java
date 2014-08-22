@@ -36,17 +36,26 @@ public class LogInController {
 			
 
 			boolean loginAttempt;
-			try {
-				loginAttempt = new LoginDAOImpl().checkUser(request.getParameter("login"), request.getParameter("password"));
-				if (loginAttempt) {
-					session.setAttribute("user", request.getParameter("login"));
-				} else {
-					model.addAttribute("authorization_message", "Wrong login or password");
-				}
-			} catch (DBException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			};
+			loginAttempt = true;
+
+			if (loginAttempt) {
+				session.setAttribute("user", request.getParameter("login"));
+			} else {
+				model.addAttribute("authorization_message", "Wrong login or password");
+			}
+
+			
+//			try {
+//				loginAttempt = new LoginDAOImpl().checkUser(request.getParameter("login"), request.getParameter("password"));
+//				if (loginAttempt) {
+//					session.setAttribute("user", request.getParameter("login"));
+//				} else {
+//					model.addAttribute("authorization_message", "Wrong login or password");
+//				}
+//			} catch (DBException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			};
 			
 
 		}

@@ -3,7 +3,9 @@ package lv.localhost.MyDay.Controllers;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import lv.localhost.MyDay.DAO.AccountDAOImpl;
 import lv.localhost.MyDay.DAO.VisitDAOImpl;
+import lv.localhost.MyDay.Model.Account;
 import lv.localhost.MyDay.Model.Visit;
 import lv.localhost.MyDay.common.DBException;
 
@@ -27,12 +29,23 @@ public class VisitController {
 		String from = request.getHeader("referer"); 
 		
 		
-		// TODO : Add getting AccountID
-//		if (session.getAttribute("user") != null) {
-//		
-//		}
-		
-		Visit visit = new Visit(url,from);
+		int accountID = 0;
+		if (session.getAttribute("user") != null) {
+				Account a = new Account();
+				a.setAccountID(0);
+				
+				try {
+					a = new AccountDAOImpl().initAccount( session.getAttribute("user").toString() );
+				} catch (DBException e) {
+					System.out.println("Exception in VisitController.visitGet during account initialization by name");
+					e.printStackTrace();
+				}
+				
+				
+				accountID = a.getAccountID();
+		}
+
+		Visit visit = new Visit(url,from, accountID);
 		
 		try {
 			new VisitDAOImpl().createVisit(visit);

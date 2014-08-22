@@ -15,6 +15,13 @@ public class Visit {
 		setTimestamp(new Date());
 		setAccountID(0);
 	}
+
+	public Visit(String url, String from, int id) {
+		setUrl(url);
+		setReferer(from);
+		setTimestamp(new Date());
+		setAccountID(id);
+	}
 	
 	public Visit(String url, String from, Date timestamp) {
 		setUrl(url);

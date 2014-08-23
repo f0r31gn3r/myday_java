@@ -1,7 +1,6 @@
 package lv.localhost.MyDay.DAO;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 
 import lv.localhost.MyDay.Model.Visit;

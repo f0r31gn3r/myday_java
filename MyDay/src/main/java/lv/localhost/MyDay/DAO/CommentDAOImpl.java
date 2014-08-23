@@ -54,7 +54,7 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 	@Override
 	public boolean removeComment(int commentID) throws DBException {
 		Connection connection = null;
-		int createdRowCount = 0;
+		int removedRowCount = 0;
 
 		try {
 			connection = getConnection();
@@ -63,7 +63,7 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 					.prepareStatement("DELETE FROM COMMENTS WHERE COMMENT_ID = ?");
 			preparedStatement.setInt(1, commentID);
 
-			createdRowCount = preparedStatement.executeUpdate();
+			removedRowCount = preparedStatement.executeUpdate();
 
 		} catch (Throwable e) {
 			System.out
@@ -73,7 +73,7 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 		} finally {
 			closeConnection(connection);
 		}
-		return (createdRowCount > 0 ? true : false);
+		return (removedRowCount > 0 ? true : false);
 	}
 
 	@Override
@@ -85,13 +85,13 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 			connection = getConnection();
 
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("SELECT * FROM COMMENTS WHERE COMMENT_ID = ?");
+					.prepareStatement("SELECT COMMENT_ID, POST_ID, AUTHOR, BODY, CREATED FROM COMMENTS WHERE COMMENT_ID = ?");
 			preparedStatement.setInt(1, commentID);
 			ResultSet rs = preparedStatement.executeQuery();
 			rs.next();
 			temp = new Comment(rs.getInt(1), rs.getInt(2), rs.getInt(3),
 					rs.getString(4), rs.getDate(5));
-
+			
 		} catch (Throwable e) {
 			System.out
 					.println("Exception while execute CommentDAOImpl.getCommentByID() ");
@@ -111,7 +111,7 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 			connection = getConnection();
 
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("SELECT * FROM COMMENTS WHERE POST_ID = ?");
+					.prepareStatement("SELECT COMMENT_ID, POST_ID, AUTHOR, BODY, CREATED FROM COMMENTS WHERE POST_ID = ?");
 			preparedStatement.setInt(1, postID);
 
 			ResultSet rs = preparedStatement.executeQuery();

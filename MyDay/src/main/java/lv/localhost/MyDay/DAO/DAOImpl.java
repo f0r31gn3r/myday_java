@@ -2,7 +2,6 @@ package lv.localhost.MyDay.DAO;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,6 +11,9 @@ import lv.localhost.MyDay.common.DBException;
 
 public class DAOImpl {
 
+	/**
+	 * Constant storing full path to properties file containing database connection data
+	 */
 	public static final String DB_CONFIG_FILE = "/lv/localhost/MyDay/common/myday.properties";
 
 	private String dbUrl = null;
@@ -23,6 +25,16 @@ public class DAOImpl {
 		initDatabaseConnectionProperties();
 	}
 
+	
+	/**
+	 * This method will register MySQL driver  
+	 * The method will throw an ClassNotFoundException if 
+	 * proper driver is not found
+	 * 
+	 * @param none
+	 * @return void
+	 */
+	
 	private void registerJDBCDriver() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -32,6 +44,15 @@ public class DAOImpl {
 		}
 	}
 
+	/**
+	 * This method will read database credentials from property file   
+	 * The method will throw an IOException if errors during locating/reading  
+	 * property file are encountered
+	 * 
+	 * @param none
+	 * @return void
+	 */
+	
 	private void initDatabaseConnectionProperties() {
 		Properties properties = new Properties();
 		try {
@@ -51,6 +72,16 @@ public class DAOImpl {
 		}
 	}
 
+	
+	/**
+	 * This method will try to establish connection to the database using 
+	 * information stored in private variables 
+	 * The method will throw an SQLException if connection fails
+	 * 
+	 * @param none
+	 * @return Connection object
+	 */
+	
 	protected Connection getConnection() throws DBException {
 
 		try {
@@ -63,6 +94,15 @@ public class DAOImpl {
 		}
 	}
 
+	
+	/**
+	 * This method will close open connection provided as an argument 
+	 * The method will throw an SQLException if connection fails
+	 * 
+	 * @param Connection object
+	 * @return void
+	 */
+	
 	protected void closeConnection(Connection connection) throws DBException {
 		try {
 			if (connection != null) {

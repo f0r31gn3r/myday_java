@@ -4,6 +4,7 @@
 <head>
 	<title>Home</title>
 </head>
+<%@include file="visit.jsp" %>
 <body>
 <h1>
 	Hello world!  

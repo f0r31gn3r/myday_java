@@ -34,7 +34,6 @@ public class DAOImpl {
 
 	private void initDatabaseConnectionProperties() {
 		Properties properties = new Properties();
-		System.out.print(this.getClass());
 		try {
 			InputStream test = this.getClass().getResourceAsStream(
 					DB_CONFIG_FILE);

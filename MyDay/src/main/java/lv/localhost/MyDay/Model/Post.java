@@ -15,8 +15,9 @@ public class Post {
 		
 	}
 	
-	public Post(String title, int authorID, String body){
+	public Post(int postID, String title, Date created, int authorID, String body){
 		setTitle(title);
+		setCreated(created);
 		setAuthorID(authorID);
 		setBody(body);
 	}

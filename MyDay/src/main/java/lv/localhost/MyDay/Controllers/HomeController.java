@@ -102,7 +102,7 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate);
 		model.addAttribute("test", result);
 
-		return "home";
+		return "index";
 	}
 
 }

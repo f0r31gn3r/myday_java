@@ -124,7 +124,22 @@ public class AccountDAOImplTest extends TestCase {
 	}
 
 	public void testUpdateAccountIntStringStringStringString() {
-		fail("Not yet implemented");
+		try {
+			AccountDAO a = new AccountDAOImpl();
+			
+			a.updateAccount(1, "pass", "fname", "lname");
+			assertEquals(a.initAccount(1).getPassword(), "pass");
+			assertEquals(a.initAccount(1).getFirstName(), "fname");
+			assertEquals(a.initAccount(1).getLastName(), "lname");
+			
+			a.updateAccount(1, "123", "Vasyly", "Pupkin");
+			
+		} catch (AssertionFailedError e) {
+			fail();
+		} catch (DBException e) {
+			e.printStackTrace();
+			fail("Not yet implemented");
+		}
 	}
 
 	public void testInitAccountString() {

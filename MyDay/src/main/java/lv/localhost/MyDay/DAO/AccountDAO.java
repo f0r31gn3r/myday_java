@@ -28,7 +28,7 @@ public interface AccountDAO {
 	boolean updateAccount(Account a) throws DBException;//?
 	
 	boolean updateAccount(int accountID, String password,
-			String login, String firstName, String lastName) throws DBException;//accountID?
+			String firstName, String lastName) throws DBException;//accountID?
 	
 	Account initAccount(String login)  throws DBException;
 	Account initAccount(int accountID)  throws DBException;//?

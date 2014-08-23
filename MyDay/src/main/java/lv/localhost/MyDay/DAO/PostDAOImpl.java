@@ -3,11 +3,11 @@ package lv.localhost.MyDay.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
-import lv.localhost.MyDay.DAO.DAOImpl;
-import lv.localhost.MyDay.common.DBException;
-import lv.localhost.MyDay.DAO.PostDAO;
 import lv.localhost.MyDay.Model.Post;
+import lv.localhost.MyDay.common.DBException;
 
 public class PostDAOImpl extends DAOImpl implements PostDAO{
 
@@ -67,7 +67,7 @@ public class PostDAOImpl extends DAOImpl implements PostDAO{
 			
 	
 		} catch (Throwable e) {
-			System.out.println("Exception while execute PostDAOImpl.createPost() ");
+			System.out.println("Exception while execute PostDAOImpl.removePost() ");
 			e.printStackTrace();
 			throw new DBException(e);
 		}
@@ -95,7 +95,7 @@ public class PostDAOImpl extends DAOImpl implements PostDAO{
 			
 	
 		} catch (Throwable e) {
-			System.out.println("Exception while execute PostDAOImpl.createPost() ");
+			System.out.println("Exception while execute PostDAOImpl.updatePost() ");
 			e.printStackTrace();
 			throw new DBException(e);
 		}
@@ -124,7 +124,7 @@ public class PostDAOImpl extends DAOImpl implements PostDAO{
 				result = new Post(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(5), resultSet.getString(6));
 			}		
 		} catch (Throwable e) {
-			System.out.println("Exception while execute PostDAOImpl.createPost() ");
+			System.out.println("Exception while execute PostDAOImpl.findPosts() ");
 			e.printStackTrace();
 			throw new DBException(e);
 		}
@@ -132,5 +132,38 @@ public class PostDAOImpl extends DAOImpl implements PostDAO{
 			closeConnection(connection);
 		}
 		return result;
+	}
+
+	@Override
+	public List<Post> findLatestPosts() throws DBException {
+		Connection connection = null;
+		List <Post> results = new ArrayList <Post> ();
+		
+		try {
+			connection = getConnection();
+
+			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM POSTS ORDER BY CREATED DESC LIMIT 10");
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()){		
+				results.add(new Post(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getInt(5), resultSet.getString(6)));
+			}		
+			System.out.println("resultset filled");
+			
+			for (int i = 0; i < results.size(); i++)
+				System.out.println(results.get(i).getTitle());
+			System.out.println(results.size());
+			
+		} catch (Throwable e) {
+			System.out.println("Exception while execute PostDAOImpl.findLatestPosts() ");
+			e.printStackTrace();
+			throw new DBException(e);
+		}
+		finally {
+			closeConnection(connection);
+		}
+		
+		return results;
 	}
 }

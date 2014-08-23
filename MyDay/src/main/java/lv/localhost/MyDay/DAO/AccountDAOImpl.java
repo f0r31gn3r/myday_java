@@ -241,14 +241,13 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 
 			PreparedStatement preparedStatement = connection
 					.prepareStatement("update ACCOUNT "
-							+ " SET LOGIN = ?, PASSWORD = ?, FIRST_NAME = ?, LAST_NAME = ? "
+							+ " SET PASSWORD = ?, FIRST_NAME = ?, LAST_NAME = ? "
 							+ " where ACCOUNT_ID = ?");
 
-			preparedStatement.setString(1, a.getLogin());
-			preparedStatement.setString(2, a.getPassword());
-			preparedStatement.setString(3, a.getFirstName());
-			preparedStatement.setString(4, a.getLastName());
-			preparedStatement.setInt(5, a.getAccountID());
+			preparedStatement.setString(1, a.getPassword());
+			preparedStatement.setString(2, a.getFirstName());
+			preparedStatement.setString(3, a.getLastName());
+			preparedStatement.setInt(4, a.getAccountID());
 
 			updatedRowCount = preparedStatement.executeUpdate();
 
@@ -264,7 +263,7 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 	}
 
 	@Override
-	public boolean updateAccount(int accountID, String login, String password,
+	public boolean updateAccount(int accountID, String password,
 			String firstName, String lastName) throws DBException {
 		Connection connection = null;
 
@@ -275,14 +274,13 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 
 			PreparedStatement preparedStatement = connection
 					.prepareStatement("update ACCOUNT "
-							+ " SET LOGIN = ?, PASSWORD = ?, FIRST_NAME = ?, LAST_NAME = ? "
+							+ " SET PASSWORD = ?, FIRST_NAME = ?, LAST_NAME = ? "
 							+ " where ACCOUNT_ID = ?");
 
-			preparedStatement.setString(1, login);
-			preparedStatement.setString(2, password);
-			preparedStatement.setString(3, firstName);
-			preparedStatement.setString(4, lastName);
-			preparedStatement.setInt(5, accountID);
+			preparedStatement.setString(1, password);
+			preparedStatement.setString(2, firstName);
+			preparedStatement.setString(3, lastName);
+			preparedStatement.setInt(4, accountID);
 
 			updatedRowCount = preparedStatement.executeUpdate();
 

@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -51,12 +52,29 @@ public class AccountDAOImplTest extends TestCase {
 	}
 
 	public void testCreateAccountAccount() {
-		AccountDAO ad = new AccountDAOImpl();
-		Account a = new Account("user21", "pass", "fname", "lname");
-		
+		fail("Not yet implemented");
+	}
+
+	public void testCreateAccountStringStringStringString() {
 		try {
-			ad.createAccount(a);
-			assertEquals(ad.initAccount("user21").getLogin(), "user21");
+			AccountDAO a = new AccountDAOImpl();
+			int i = a.createAccount("user21", "pass", "fname", "lname");
+			assertEquals(a.initAccount("user21").getLogin(), "user21");
+			assertEquals(a.initAccount("user21").getFirstName(), "fname");
+			assertEquals(i, a.initAccount("user21").getAccountID());
+			
+		} catch (AssertionFailedError e) {
+			fail();
+		} catch (DBException e) {
+			e.printStackTrace();
+			fail("Not yet implemented");
+		}
+	}
+	
+	public void testAccountExistsString() {
+		try {
+			AccountDAO a = new AccountDAOImpl();
+			assertTrue(a.accountExists("user21"));
 			
 		} catch (AssertionFailedError e) {
 			fail();
@@ -66,8 +84,17 @@ public class AccountDAOImplTest extends TestCase {
 		}
 	}
 
-	public void testCreateAccountStringStringStringString() {
-		fail("Not yet implemented");
+	public void testAccountExistsStringString() {
+		try {
+			AccountDAO a = new AccountDAOImpl();
+			assertTrue(a.accountExists("user21", "pass"));
+			
+		} catch (AssertionFailedError e) {
+			fail();
+		} catch (DBException e) {
+			e.printStackTrace();
+			fail("Not yet implemented");
+		}
 	}
 
 	public void testRemoveAccountAccount() {
@@ -75,7 +102,17 @@ public class AccountDAOImplTest extends TestCase {
 	}
 
 	public void testRemoveAccountString() {
-		fail("Not yet implemented");
+		try {
+			AccountDAO a = new AccountDAOImpl();
+			a.removeAccount("user21");
+			assertNull(a.initAccount("user21"));
+			
+		} catch (AssertionFailedError e) {
+			fail();
+		} catch (DBException e) {
+			e.printStackTrace();
+			fail("Not yet implemented");
+		}
 	}
 
 	public void testRemoveAccountInt() {
@@ -87,7 +124,22 @@ public class AccountDAOImplTest extends TestCase {
 	}
 
 	public void testUpdateAccountIntStringStringStringString() {
-		fail("Not yet implemented");
+		try {
+			AccountDAO a = new AccountDAOImpl();
+			
+			a.updateAccount(1, "pass", "fname", "lname");
+			assertEquals(a.initAccount(1).getPassword(), "pass");
+			assertEquals(a.initAccount(1).getFirstName(), "fname");
+			assertEquals(a.initAccount(1).getLastName(), "lname");
+			
+			a.updateAccount(1, "123", "Vasyly", "Pupkin");
+			
+		} catch (AssertionFailedError e) {
+			fail();
+		} catch (DBException e) {
+			e.printStackTrace();
+			fail("Not yet implemented");
+		}
 	}
 
 	public void testInitAccountString() {
@@ -98,20 +150,33 @@ public class AccountDAOImplTest extends TestCase {
 		fail("Not yet implemented");
 	}
 
-	public void testAccountExistsString() {
-		fail("Not yet implemented");
-	}
-
-	public void testAccountExistsStringString() {
-		fail("Not yet implemented");
-	}
-
 	public void testGetAllAccounts() {
-		fail("Not yet implemented");
+		try {
+			AccountDAO a = new AccountDAOImpl();
+			List<Account> list = a.getAllAccounts();
+			assertEquals(list.size(), 3);
+			
+		} catch (AssertionFailedError e) {
+			fail();
+		} catch (DBException e) {
+			e.printStackTrace();
+			fail("Not yet implemented");
+		}
 	}
 
 	public void testGetAllAccountsIntInt() {
-		fail("Not yet implemented");
+		try {
+			AccountDAO a = new AccountDAOImpl();
+			List<Account> list = a.getAllAccounts(1,2);
+			assertEquals(list.size(), 2);
+			assertEquals(list.get(1).getLogin(), "Crazy");
+			
+		} catch (AssertionFailedError e) {
+			fail();
+		} catch (DBException e) {
+			e.printStackTrace();
+			fail("Not yet implemented");
+		}
 	}
 
 }

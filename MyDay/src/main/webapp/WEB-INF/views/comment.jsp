@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="true"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>comment_create</title>
-
 <script type='text/javascript'>
 	CharacterCount = function(TextArea, FieldToCount) {
 		var myField = document.getElementById(TextArea);
@@ -33,26 +27,18 @@
 		CharacterCount('body', 'CharCountLabel1')
 	}, 55);
 </script>
-
-</head>
-<body>
-	<form:form method="POST" commandName="create"
-		action="/MyDay/comment_created">
+   
+	<form name="input" action="comment"  method="post">
 		<table>
-			<tr>
-				<td><form:label path="postID">PostID</form:label></td>
-				<td><form:input type="text" path="postID" /></td>
-				<td><form:label path="author">AuthorID</form:label></td>
-				<td><form:input type="text" path="author" /></td>
+			<tr>		
+				<td><input name="postID" type="hidden" value="1"/></td>
+				<td><input name="author" type="hidden" value="1"/></td>
 			</tr>
 			<tr>
-				<td><form:label path="body">Body</form:label></td>
-				<td><form:textarea rows="4" cols="50" id="body" path="body"
-						maxlength="200" /></td>
+				<td><textarea rows="4" cols="50" name="body" maxlength="200">some text</textarea></td>
 				<td><input type="submit" value="Submit" /></td>
 			</tr>
 		</table>
-	</form:form>
+	</form>
 	<div id='CharCountLabel1'></div>
-</body>
-</html>
+	[<a href="comment?delete=11">remove comment</a>]

@@ -27,18 +27,17 @@
 		CharacterCount('body', 'CharCountLabel1')
 	}, 55);
 </script>
-   
+
+<% if (session.getAttribute("user") != null) { 
+	 
+	%>   
 	<form name="input" action="comment"  method="post">
-		<table>
-			<tr>		
-				<td><input name="postID" type="hidden" value="1"/></td>
-				<td><input name="author" type="hidden" value="1"/></td>
-			</tr>
-			<tr>
-				<td><textarea rows="4" cols="50" name="body" maxlength="200">some text</textarea></td>
-				<td><input type="submit" value="Submit" /></td>
-			</tr>
-		</table>
+        <input name="postID" type="hidden" value="1"/>
+		<textarea rows="4" cols="50" name="body" maxlength="200">some text</textarea>
+		<input type="submit" value="Submit" />
 	</form>
 	<div id='CharCountLabel1'></div>
 	[<a href="comment?delete=11">remove comment</a>]
+<%
+}
+%>

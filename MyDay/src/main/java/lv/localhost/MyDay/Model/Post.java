@@ -20,6 +20,7 @@ public class Post {
 		setCreated(created);
 		setAuthorID(authorID);
 		setBody(body);
+		setPostID(postID);
 	}
 	
 	public Post(int postID, String title, int authorID, String body){

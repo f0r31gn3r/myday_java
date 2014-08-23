@@ -7,6 +7,8 @@
 <head>
 	<title>Home</title>
 	
+	
+	
 	<style type="text/css">
 	#site{
 		width:70%;
@@ -75,6 +77,7 @@ p{
     background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
 	}
 	</style>
+	
 </head>
 <body>
 
@@ -105,7 +108,7 @@ p{
 
 <!-- Main menu start -->
 <div id="menu">
-<a href="/MyDay/new_post">New post</a> | <a href="/MyDay/edit_post/1">Edit post</a> | <a href="/MyDay/delete_post">Delete post</a>
+<a href="/MyDay/new_post">New post</a>
 </div>
 <!-- Main menu end -->
 

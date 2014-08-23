@@ -106,7 +106,7 @@ public class PostDAOImpl extends DAOImpl implements PostDAO{
 	}
 
 	@Override
-	public Post findPosts(int postID) throws DBException {
+	public Post findPost(int postID) throws DBException {
 		Connection connection = null;
 		Post result = null;
 		
@@ -149,11 +149,6 @@ public class PostDAOImpl extends DAOImpl implements PostDAO{
 			while (resultSet.next()){		
 				results.add(new Post(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getInt(5), resultSet.getString(6)));
 			}		
-			System.out.println("resultset filled");
-			
-			for (int i = 0; i < results.size(); i++)
-				System.out.println(results.get(i).getTitle());
-			System.out.println(results.size());
 			
 		} catch (Throwable e) {
 			System.out.println("Exception while execute PostDAOImpl.findLatestPosts() ");

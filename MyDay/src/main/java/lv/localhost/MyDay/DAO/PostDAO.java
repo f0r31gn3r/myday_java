@@ -13,7 +13,7 @@ public interface PostDAO {
 	
 	boolean updatePost(Post p) throws DBException;
 	
-	Post findPosts(int postID) throws DBException;
+	Post findPost(int postID) throws DBException;
 	List <Post> findLatestPosts() throws DBException;
 
 }

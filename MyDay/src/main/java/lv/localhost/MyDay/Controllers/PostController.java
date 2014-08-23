@@ -39,35 +39,26 @@ public class PostController {
 		PostDAOImpl i = new PostDAOImpl();
 		i.createPost(p);
 		
-		return "created";
+		return "index";
 		
 	}
 	
-	@RequestMapping(value="/delete_post", method = RequestMethod.GET)
-	public ModelAndView deleteForm(ModelMap model) throws DBException{
-		
-		p = new Post();
-		
-		return new ModelAndView("delete_post", "delete", p);
-		
-	}
-	
-	@RequestMapping(value="/deleted", method = RequestMethod.POST)
-	public String deletePost(@ModelAttribute ("delete_post") Post p, ModelMap model) throws DBException{
+	@RequestMapping(value="/delete_post/{postID}", method = RequestMethod.GET)
+	public String deletePost(@PathVariable ("postID") int postID, ModelMap model) throws DBException{
 		
 		PostDAOImpl i = new PostDAOImpl();
-		i.removePost(p.getPostID());
+		i.removePost(postID);
 		
-		return "deleted";
+		return "index";
 		
 	}
 	
 	@RequestMapping(value="/edit_post/{postID}", method = RequestMethod.GET)
-	public ModelAndView editForm(@PathVariable ("postID") int postID, HttpServletRequest request, Model model) throws DBException{
+	public ModelAndView editForm(@PathVariable ("postID") int postID, Model model) throws DBException{
 		
 		p = new Post();
 		PostDAOImpl i = new PostDAOImpl();
-		p = i.findPosts(postID);
+		p = i.findPost(postID);
 		
 		model.addAttribute("postid", p.getPostID());
 		

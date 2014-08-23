@@ -16,17 +16,13 @@ public class Account {
 		
 	}
 
-	public Account(int id, String login, String password, String firstName, String lastName  ){
-		setAccountID(id);
+	public Account(String login, String password, String firstName, String lastName  ){
 		
 		setLogin(login);
 		setPassword(password);
 		
 		setFirstName(firstName);
 		setLastName(lastName);
-		
-		setCreated(null);
-		setLastVisited(null);
 	}
 	
 	public Account(int id, String login, String password, String firstName, String lastName, Date created, Date lastVisited  ){

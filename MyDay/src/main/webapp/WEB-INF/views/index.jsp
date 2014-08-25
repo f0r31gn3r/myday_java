@@ -157,6 +157,10 @@ if ( central_page == null)
 %>
 <%@include file="post.jsp" %>
 <%
+	}else if (central_page.equals("post")) {
+%>
+<%@include file="post.jsp" %>
+<%
 	}else if (central_page.equals("create")) {
 %>
 <%@include file="new_post.jsp" %>

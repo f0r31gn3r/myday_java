@@ -178,6 +178,8 @@ div#popup_content {
 </style>
 <%
 PostDAOImpl p = new PostDAOImpl();
+if (request.getParameter("search") == null){
+
 List <Post> posts = p.findLatestPosts();
 
 for (int i = 0; i < posts.size(); i++){
@@ -197,4 +199,23 @@ for (int i = 0; i < posts.size(); i++){
 <div id="news_bottom">Date published: <%=posts.get(i).getCreated() %> | Comment ($_COM)</div>
 
 </div>
-<% } %>
+<% } 
+}
+else{
+	List <Post> results = p.searchPost(request.getParameter("search"));
+	for (int i = 0; i < results.size(); i++){
+		%>
+			<div id="news">
+		   <div id="news_top"><p><a href="?page=post&id=<%=results.get(i).getPostID()%>"> <%=results.get(i).getTitle() %> </a></p></div>
+		   <hr class="style-two">
+		   
+		    
+
+		<div id="news_text">
+		<%=results.get(i).getBody() %>
+		</div>
+
+		</div>
+		<% } 
+}
+%>

@@ -128,9 +128,14 @@ String s = date.toString();
 
 <!-- Search start -->
 <div id="search">
-<form id="search_form">
-<input type="text" value="Search"> <button type="submit">Search</button>
-</form>
+
+<script>
+
+</script>
+
+<input type="text" id="textSearch" value="Search"> 
+<button onclick="window.location='?page=posts&search='+document.getElementById('textSearch').value; ">Search</button>
+
 </div>
 <!-- Search end -->
 

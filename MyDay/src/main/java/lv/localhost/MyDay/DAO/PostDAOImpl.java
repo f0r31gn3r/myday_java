@@ -161,4 +161,36 @@ public class PostDAOImpl extends DAOImpl implements PostDAO{
 		
 		return results;
 	}
+
+	@Override
+	public List <Post> searchPost(String key) throws DBException {
+		
+		Connection connection = null;
+		List <Post> results = new ArrayList <Post> ();
+		
+		try {
+			connection = getConnection();
+
+			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM POSTS WHERE BODY like ?");
+			preparedStatement.setString(1, "%" + key + "%");
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()){		
+				results.add(new Post(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getInt(5), resultSet.getString(6)));
+			}		
+			
+		} catch (Throwable e) {
+			System.out.println("Exception while execute PostDAOImpl.findLatestPosts() ");
+			e.printStackTrace();
+			throw new DBException(e);
+		}
+		finally {
+			closeConnection(connection);
+		}
+		
+		return results;
+	}
+	
+	
 }

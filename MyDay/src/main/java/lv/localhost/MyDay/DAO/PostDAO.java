@@ -15,5 +15,6 @@ public interface PostDAO {
 	
 	Post findPost(int postID) throws DBException;
 	List <Post> findLatestPosts() throws DBException;
+	List <Post> searchPost(String key) throws DBException;
 
 }

@@ -219,6 +219,33 @@ if ( action.equals("display") ){
 }else if (action.equals("edit")) {
 %>
 
+<form method="post" action="/MyDay/post_edit">
+<table>
+<tr>
+        <td>PostID</td>
+        <td><input type="text" name="postPostID" value="<%= p.getPostID() %>"/></td>
+    </tr>
+    <tr>
+        <td>AuthorID</td>
+        <td><input type="text" name="postAuthID" value="<%= p.getAuthorID() %>"/></td>
+    </tr>
+    <tr>
+        <td>Title</td>
+        <td><input type="text" name="postTitle" value="<%= p.getTitle() %>"/></td>
+    </tr>
+    <tr>
+        <td>Text</td>
+        <td><textarea rows="10" name="postBody" cols="100" id="body"><%= p.getBody() %></textarea></td>
+       
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input type="submit" name="submit" value="Submit"/>
+        </td>
+    </tr>
+</table>  
+</form>
+
 <%
 }else if (action.equals("delete")) {
 	PostDAOImpl i = new PostDAOImpl();

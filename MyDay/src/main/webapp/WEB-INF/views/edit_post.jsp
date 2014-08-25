@@ -11,60 +11,34 @@
 
 <%
 
-System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
-
 PostDAOImpl pi = new PostDAOImpl();
-Post p2 = new Post();
 
-p2 = pi.findPost(5);
-int authorID = p2.getAuthorID();
-String title = p2.getTitle();
-String body = p2.getBody();
-int postID = p2.getPostID();
+System.out.println("\n" + request.getParameter("id"));
 
-
-System.out.println("=== Parameters data ===");
-
-java.util.Enumeration parEnum= request.getParameterNames();
-while (parEnum.hasMoreElements()) {
-    String s = (String) parEnum.nextElement();
-    System.out.println(s);
-    System.out.println("==" + request.getParameter(s));
-}
-
-System.out.println("*** Session data ***");
-Enumeration<String> e = session.getAttributeNames();
-while (e.hasMoreElements()){
-  String s = e.nextElement();
-  System.out.println(s);
-  System.out.println("**" + session.getAttribute(s));
-}
-
-System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
 %>
 
 <form>
 <table>
 <tr>
         <td>PostID</td>
-        <td><input type="text" value="<%= postID %>"/></td>
+        <td><input type="text" name="postPostID" value="<%=  %>"/></td>
     </tr>
     <tr>
         <td>AuthorID</td>
-        <td><input type="text" value="<%= authorID %>"/></td>
+        <td><input type="text" name="postAuthID" value="<%=  %>"/></td>
     </tr>
     <tr>
         <td>Title</td>
-        <td><input type="text" value="<%= title %>"/></td>
+        <td><input type="text" name="postTitle" value="<%=  %>"/></td>
     </tr>
     <tr>
         <td>Text</td>
-        <td><textarea rows="10" cols="100" id="body"><%= body %></textarea></td>
+        <td><textarea rows="10" name="postBody" cols="100" id="body"><%=  %></textarea></td>
        
     </tr>
     <tr>
         <td colspan="2">
-            <input type="submit" value="Submit"/>
+            <input type="submit" name="submit" value="Submit"/>
         </td>
     </tr>
 </table>  

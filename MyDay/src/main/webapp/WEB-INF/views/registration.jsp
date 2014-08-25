@@ -8,27 +8,15 @@
 <body>
 	<h1>Registration</h1>
 
-	<form:form method="POST" action="addAccount" commandName="account">
+	<form name="input" action="registration" method="post">
 		<table>
 			<tr>
-
-				<td><FONT color="red"><form:errors
-							path="login" /></FONT></td>
-
-			</tr>
-			<tr>
 				<td>User Name:</td>
-				<td><form:input path="login" /></td>
-			</tr>
-			<tr>
-
-				<td><FONT color="red"><form:errors
-							path="password" /></FONT></td>
-
+				<td><input type="text" name="login" value=""></td>
 			</tr>
 			<tr>
 				<td>Password:</td>
-				<td><form:password path="password" /></td>
+				<td><input type="password" name="password" value=""></td>
 			</tr>
 			<tr>
 				<td>-</td>
@@ -36,11 +24,11 @@
 			</tr>
 			<tr>
 				<td>First Name:</td>
-				<td><form:input path="firstName" /></td>
+				<td><input type="text" name="firstName" value=""></td>
 			</tr>
 			<tr>
 				<td>Last Name:</td>
-				<td><form:input path="lastName" /></td>
+				<td><input type="text" name="lastName" value=""></td>
 			</tr>
 			<tr>
 				<td>-</td>
@@ -48,9 +36,8 @@
 			</tr>
 		</table>
 		<input type="submit" value="Register"> | <a href="/MyDay/">Go
-			Home</a>
-		<br>
-	</form:form>
+			Home</a><br>
+	</form>
 
 
 </body>

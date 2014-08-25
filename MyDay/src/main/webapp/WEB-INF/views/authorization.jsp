@@ -32,7 +32,7 @@
 
 	<input type="text" name="login" value="login" onclick="if(this.value == 'login') {this.value=''}"><br>
 	<input type="password" name="password" value="password" onclick="if(this.value == 'password') {this.value=''}"><br>
-	<input type="submit" value="Sign In"> | <a href="registration"> Sign Up</a>
+	<input type="submit" value="Sign In"> | <a href="?page=registration"> Sign Up</a>
 </form> 
 <%}
 else {%>

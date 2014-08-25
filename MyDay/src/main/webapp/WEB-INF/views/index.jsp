@@ -143,10 +143,19 @@ if ( central_page == null)
 <%@include file="posts.jsp" %>
 
 <%
-	}else if (central_page.equals("registration")) {
+	}else if ( central_page.equals("registration") || (central_page.equals("registration.jsp")) ) {
 %>
 <%@include file="registration.jsp" %>
 
+<%
+	}else if ( (central_page.equals("result.jsp")) ) {
+%>
+<%@include file="result.jsp" %>
+
+<%
+	}else if (central_page.equals("post")) {
+%>
+<%@include file="post.jsp" %>
 <%
 	}else if (central_page.equals("post")) {
 %>
@@ -159,6 +168,7 @@ if ( central_page == null)
 
 <%
 	}else {
+		System.out.println("debug :" + central_page);
 %>
 <%@include file="home.jsp" %>
 

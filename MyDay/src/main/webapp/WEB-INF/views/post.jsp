@@ -44,7 +44,7 @@ if ( action == null)
 
 if ( action.equals("display") ){
 %>
- <div id="news">
+ 	<div id="news">
 		<div id="news_top"><p> <%=p.getTitle() %></p></div>
 		<% 
 			if ( session.getAttribute("user") != null)
@@ -65,6 +65,8 @@ if ( action.equals("display") ){
 		<div id="news_bottom">Date published: <%=p.getCreated() %> | Comment ($_COM)</div>
 	
 	</div>
+	
+	<%@include file="comment.jsp" %>
 <%
 }else if (action.equals("edit")) {
 %>

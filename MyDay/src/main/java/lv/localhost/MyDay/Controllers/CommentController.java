@@ -37,16 +37,17 @@ public class CommentController {
 
 		c = new Comment();
 		
-		int authorID = new AccountDAOImpl().getIDByLogin( session.getAttribute("user").toString() );
-		
-		c.setAuthor(authorID);
-		c.setPostID(Integer.parseInt(request.getParameter("postID")));
+		//int authorID = new AccountDAOImpl().getIDByLogin( session.getAttribute("user").toString() );
+		int authorID = Integer.parseInt(request.getParameter("authorID"));
+		int postID = Integer.parseInt(request.getParameter("postID"));		
+		c.setAuthor( authorID );
+		c.setPostID(postID);
 		c.setBody(request.getParameter("body"));
 
 		CommentDAOImpl i = new CommentDAOImpl();
 		i.createComment(c.getPostID(), c.getAuthor(), c.getBody());
 
-		return "comment";
+		return "redirect:?page=post&id="+postID;
 	}
 
 }

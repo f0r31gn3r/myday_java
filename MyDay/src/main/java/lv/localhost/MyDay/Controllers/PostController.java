@@ -32,7 +32,7 @@ public class PostController {
 		PostDAOImpl i = new PostDAOImpl();
 		i.createPost(p);
 		
-		return "index";
+		return "redirect:?page=posts";
 		
 	}
 	

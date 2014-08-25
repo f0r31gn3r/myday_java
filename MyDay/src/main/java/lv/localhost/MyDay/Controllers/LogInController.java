@@ -24,7 +24,7 @@ public class LogInController {
         		session.invalidate();
         	}
         		
-		return "home";
+		return "index";
 	}
 	
 	@RequestMapping(value = "/authorization", method = RequestMethod.POST)
@@ -42,10 +42,10 @@ public class LogInController {
 			}
 			if (loginAttempt) {
 				session.setAttribute("user", request.getParameter("login"));
-				return "home"; 
+				return "index"; 
 			} else {
 				model.addAttribute("authorization_message", "Wrong login or password");
-				return "home";
+				return "index";
 			}
 
 			
@@ -64,7 +64,7 @@ public class LogInController {
 
 		}
 
-		return "home";
+		return "index";
 	}
 
 }

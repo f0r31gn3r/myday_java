@@ -1,6 +1,8 @@
     <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>  
     <%@ page import="lv.localhost.MyDay.DAO.PostDAOImpl" %>
 <%@ page import="lv.localhost.MyDay.Model.Post" %>
+<%@ page import="java.util.Enumeration" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,6 +10,9 @@
 <body>
 
 <%
+
+System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
+
 PostDAOImpl pi = new PostDAOImpl();
 Post p2 = new Post();
 
@@ -17,6 +22,25 @@ String title = p2.getTitle();
 String body = p2.getBody();
 int postID = p2.getPostID();
 
+
+System.out.println("=== Parameters data ===");
+
+java.util.Enumeration parEnum= request.getParameterNames();
+while (parEnum.hasMoreElements()) {
+    String s = (String) parEnum.nextElement();
+    System.out.println(s);
+    System.out.println("==" + request.getParameter(s));
+}
+
+System.out.println("*** Session data ***");
+Enumeration<String> e = session.getAttributeNames();
+while (e.hasMoreElements()){
+  String s = e.nextElement();
+  System.out.println(s);
+  System.out.println("**" + session.getAttribute(s));
+}
+
+System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
 %>
 
 <form>

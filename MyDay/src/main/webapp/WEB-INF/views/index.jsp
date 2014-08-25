@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page session="true" %>
@@ -126,7 +127,30 @@ p{
 <!-- Search end -->
 
 <!-- News start -->
+<%
+
+String central_page = request.getParameter("page");
+if ( central_page == null)
+	central_page ="posts";
+
+	if ( central_page.equals("posts") ){
+%>
 <%@include file="post.jsp" %>
+
+<%
+	}else if (central_page.equals("registration")) {
+%>
+<%@include file="registration.jsp" %>
+
+
+<%
+	}else {
+%>
+<%@include file="home.jsp" %>
+
+<%
+	}
+%>
 <!-- News end -->
 
 <!-- Page counter start -->

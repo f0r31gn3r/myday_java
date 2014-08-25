@@ -188,7 +188,7 @@ for (int i = 0; i < posts.size(); i++){
 %>
 	<div id="news">
    <div id="news_top"><p> <%=posts.get(i).getTitle() %> </p></div>
-   <a href="id=<%=posts.get(i).getPostID()%>" class="topopup">Edit post</a> | <a href="/MyDay/delete_post/<%=posts.get(i).getPostID()%>">Delete post</a>
+   <a href="/MyDay/index.jsp?edit=<%=posts.get(i).getPostID()%>" class="topopup">Edit post</a> | <a href="?delete=<%=posts.get(i).getPostID()%>">Delete post</a>
    <hr class="style-two">
    
     

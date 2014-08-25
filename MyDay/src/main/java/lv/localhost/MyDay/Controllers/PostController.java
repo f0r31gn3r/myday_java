@@ -73,17 +73,29 @@ public class PostController {
 		
 	}
 	
-	@RequestMapping(value="/edited", method = RequestMethod.POST)
-	public String editPost(@ModelAttribute ("edit_post") Post p, ModelMap model) throws DBException{
+	@RequestMapping(value="/edit_post", method = RequestMethod.GET)
+	public String editForm(Model model, HttpServletRequest request, HttpSession session) throws DBException{
 		
-		PostDAOImpl i = new PostDAOImpl();
-		p.setPostID(this.p.getPostID());
-		i.updatePost(p);
+		return "index";
 		
-		model.addAttribute("posttitle", p.getTitle());
-		model.addAttribute("postid", p.getPostID()); 
+	}
+	
+	@RequestMapping(value="/edit_post", method = RequestMethod.POST)
+	public String editPost(Model model, HttpServletRequest request, HttpSession session) throws DBException{
 		
-		return "edited";
+		if (request.getParameter("submit") != null) {
+			PostDAOImpl pi = new PostDAOImpl();
+			p = new Post();
+			p.setAuthorID(Integer.parseInt(request.getParameter("postAuthID")));
+			p.setTitle(request.getParameter("postTitle"));
+			p.setBody(request.getParameter("postBody"));
+			p.setPostID(Integer.parseInt(request.getParameter("postPostID")));
+			
+			pi = new PostDAOImpl();
+			pi.updatePost(p);
+			}
+		
+		return "index";
 		
 	}
 }

@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page import="java.util.Enumeration" %>
+<%@ page import="java.net.URL" %>
 <%@ page import="lv.localhost.MyDay.DAO.PostDAOImpl" %>
 <%@ page import="lv.localhost.MyDay.Model.Post" %>
 <%@ page session="true" %>
@@ -184,11 +184,10 @@ div#popup_content {
 <%
 
 
-
 %>
 	<div id="news">
    <div id="news_top"><p> ${title}</p></div>
-   <a href="">Edit post</a> | <a href="/MyDay/delete_post/">Delete post</a>
+   <a href="" class="topopup">Edit post</a> | <a href="/MyDay/delete_post/${postID}">Delete post</a>
    <hr class="style-two">
    
     

@@ -1,9 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ page import="lv.localhost.MyDay.DAO.AccountDAOImpl" %>
-<%@ page session="true" %>  
 
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>  
+<%@ page import="lv.localhost.MyDay.DAO.PostDAOImpl" %>
+<%@ page import="lv.localhost.MyDay.Model.Post" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Create new post</title>
 
 <script type='text/javascript'>
 CharacterCount = function(TextArea,FieldToCount){
@@ -19,28 +22,29 @@ CharacterCount = function(TextArea,FieldToCount){
 //SETUP!!
 setInterval(function(){CharacterCount('body','CharCountLabel1')},55);
 </script>
+</head>
+<body>
 
 
-<h1 align=center>Create new post</h1><br/>
+<h1>Create new post</h1><br/>
 
-<% 
- 	int authorID = new AccountDAOImpl().getIDByLogin( session.getAttribute("user").toString() );
+<%
+
 %>
-<form method="POST" action="/MyDay/new_post">
-   <table>
+
+<form>
+<table>
     <tr>
-        <td><label>Title</label></td>
-        <td>
-        	<input type="text" name="title" />
-        	<input type="hidden" name="authorID" value="<%=authorID %>">
-        </td>
-        
+        <td>AuthorID</td>
+        <td><input type="text" name="authorID"/></td>
     </tr>
     <tr>
-        <td></td>
-        <td>
-        	<textarea rows="4" cols="50" id="body" name="body" maxlength="1000"></textarea>
-        </td>
+        <td>Title</td>
+        <td><input type="text" name="title"></td>
+    </tr>
+    <tr>
+        <td>Text</td>
+        <td><textarea rows="10" cols="100" id="body" name="body" ></textarea></td>
        
     </tr>
     <tr>
@@ -50,4 +54,7 @@ setInterval(function(){CharacterCount('body','CharCountLabel1')},55);
     </tr>
 </table>  
 </form>
+
  <div id='CharCountLabel1'></div>
+</body>
+</html>

@@ -184,6 +184,7 @@ div#popup_content {
 <%
 PostDAOImpl p = new PostDAOImpl();
 List <Post> posts = p.findLatestPosts();
+System.out.println("zzz"+posts.size());
 for (int i = 0; i < posts.size(); i++){
 %>
 	<div id="news">

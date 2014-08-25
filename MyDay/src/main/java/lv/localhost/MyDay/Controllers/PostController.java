@@ -1,5 +1,8 @@
 package lv.localhost.MyDay.Controllers;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import lv.localhost.MyDay.DAO.PostDAOImpl;
 import lv.localhost.MyDay.Model.Post;
 import lv.localhost.MyDay.common.DBException;
@@ -19,20 +22,26 @@ public class PostController {
 	private Post p;
 	
 	@RequestMapping(value="/new_post", method = RequestMethod.GET)
-	public ModelAndView showForm(ModelMap model) throws DBException{
+	public String showForm(Model model, HttpServletRequest request, HttpSession session) throws DBException{
 		
-		p = new Post();
+	//	p = new Post();
+		//return new ModelAndView("new_post", "create", p);
 		
-		return new ModelAndView("new_post", "create", p);
+		return "index";
 		
 	}
 	
-	@RequestMapping(value="/created", method = RequestMethod.POST)
-	public String createPost(@ModelAttribute ("new_post") Post p, ModelMap model) throws DBException{
+	@RequestMapping(value="/new_post", method = RequestMethod.POST)
+	public String createPost(Model model, HttpServletRequest request, HttpSession session) throws DBException{
 		
-		model.addAttribute("title", p.getTitle()); 
-		model.addAttribute("id", p.getAuthorID());
-		model.addAttribute("body", p.getBody());
+		//System.out.println("Debug :"+Integer.parseInt( request.getParameter("authorID") ));
+		p = new Post();
+		p.setAuthorID( Integer.parseInt( request.getParameter("authorID") ));
+		p.setTitle(request.getParameter("title"));
+		p.setBody( request.getParameter("body") );
+//		model.addAttribute("title", p.getTitle()); 
+//		model.addAttribute("id", p.getAuthorID());
+//		model.addAttribute("body", p.getBody());
 		
 		PostDAOImpl i = new PostDAOImpl();
 		i.createPost(p);
@@ -51,32 +60,16 @@ public class PostController {
 		
 	}
 	
-	@RequestMapping(value="posts/{postID}", method=RequestMethod.GET)
-	public String showPost(@PathVariable ("postID") int postID, Model model) throws DBException{
+	@RequestMapping(value="/edit_post/{postID}", method = RequestMethod.GET)
+	public ModelAndView editForm(@PathVariable ("postID") int postID, Model model) throws DBException{
 		
 		p = new Post();
 		PostDAOImpl i = new PostDAOImpl();
 		p = i.findPost(postID);
 		
-		model.addAttribute("authorID", p.getAuthorID());
-		model.addAttribute("title", p.getTitle());
-		model.addAttribute("body", p.getBody());
-		model.addAttribute("createdDate", p.getCreated());
+		model.addAttribute("postid", p.getPostID());
 		
-		return "post";
-	}
-	
-	@RequestMapping(value="/post/{postID}", method = RequestMethod.GET)
-	public String editForm(@PathVariable ("postID") int postID, Model model) throws DBException{
-		
-		p = new Post();
-		PostDAOImpl i = new PostDAOImpl();
-		p = i.findPost(postID);
-		i.updatePost(p);
-		
-		model.addAttribute("authorID", p.getAuthorID());
-		
-		return "index";
+		return new ModelAndView("edit_post", "edit", p);
 		
 	}
 	

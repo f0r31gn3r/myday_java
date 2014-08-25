@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page session="true" %>
@@ -7,78 +8,7 @@
 <head>
 	<title>Home</title>
 	
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"> </script>
-
-  <script>
-  jQuery(function($) {
-
-		$("a.topopup").click(function() {
-				loading(); // loading
-				setTimeout(function(){ // then show popup, deley in .5 second
-					loadPopup(); // function show popup
-				}, 500); // .5 second
-		return false;
-		});
-
-		/* event for close the popup */
-		$("div.close").hover(
-						function() {
-							$('span.ecs_tooltip').show();
-						},
-						function () {
-	    					$('span.ecs_tooltip').hide();
-	  					}
-					);
-
-		$("div.close").click(function() {
-			disablePopup();  // function close pop up
-		});
-
-		$(this).keyup(function(event) {
-			if (event.which == 27) { // 27 is 'Ecs' in the keyboard
-				disablePopup();  // function close pop up
-			}
-		});
-
-	        $("div#backgroundPopup").click(function() {
-			disablePopup();  // function close pop up
-		});
-
-		$('a.livebox').click(function() {
-			alert('Hello World!');
-		return false;
-		});
-
-		 /************** start: functions. **************/
-		function loading() {
-			$("div.loader").show();
-		}
-		function closeloading() {
-			$("div.loader").fadeOut('normal');
-		}
-
-		var popupStatus = 0; // set value
-
-		function loadPopup() {
-			if(popupStatus == 0) { // if value is 0, show popup
-				closeloading(); // fadeout loading
-				$("#toPopup").fadeIn(0500); // fadein popup div
-				$("#backgroundPopup").css("opacity", "0.7"); // css opacity, supports IE7, IE8
-				$("#backgroundPopup").fadeIn(0001);
-				popupStatus = 1; // and set value to 1
-			}
-		}
-
-		function disablePopup() {
-			if(popupStatus == 1) { // if value is 1, close popup
-				$("#toPopup").fadeOut("normal");
-				$("#backgroundPopup").fadeOut("normal");
-				popupStatus = 0;  // and set value to 0
-			}
-		}
-		/************** end: functions. **************/
-	}); // jQuery End
-  </script>
+	
 	
 	<style type="text/css">
 	#site{
@@ -147,73 +77,6 @@ p{
     background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
     background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
 	}
-	#toPopup {
-    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 10px solid #ccc;
-    border-radius: 3px 3px 3px 3px;
-    color: #333333;
-    display: none;
-    font-size: 14px;
-    left: 50%;
-    margin-left: -402px;
-    position: fixed;
-    top: 20%;
-    width: 800px;
-    z-index: 2;
-}
-div.loader {
-    background: url("") no-repeat scroll 0 0 transparent;
-    height: 32px;
-    width: 32px;
-    display: none;
-    z-index: 9999;
-    top: 40%;
-    left: 50%;
-    position: absolute;
-    margin-left: -10px;
-}
-div.close {
-    background: url("") no-repeat scroll 0 0 transparent;
-    cursor: pointer;
-    height: 30px;
-    position: absolute;
-    right: -27px;
-    top: -24px;
-    width: 30px;
-}
-span.ecs_tooltip {
-    background: none repeat scroll 0 0 #000000;
-    border-radius: 2px 2px 2px 2px;
-    color: #FFFFFF;
-    display: none;
-    font-size: 11px;
-    height: 16px;
-    opacity: 0.7;
-    padding: 4px 3px 2px 5px;
-    position: absolute;
-    right: -62px;
-    text-align: center;
-    top: -51px;
-    width: 93px;
-}
-span.arrow {
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 7px solid #000000;
-    display: block;
-    height: 1px;
-    left: 40px;
-    position: relative;
-    top: 3px;
-    width: 1px;
-}
-div#popup_content {
-    margin: 4px 7px;
-    /* remove this comment if you want scroll bar
-    overflow-y:scroll;
-    height:200px
-    */
 	</style>
 	
 </head>
@@ -244,25 +107,16 @@ div#popup_content {
 </div>
 <!-- Header end -->
 
+
+<% if (session.getAttribute("user") != null) {
+	
+%>
 <!-- Main menu start -->
 <div id="menu">
-<a href="#id=new" class="topopup">New post</a>
-<div id="toPopup"> 
-    	
-        <div class="close"></div>
-       	<span class="ecs_tooltip">Press Esc to close <span class="arrow"></span></span>
-		<div id="popup_content"> <!--your content start-->
-		
-		<%@include file="new_post.jsp" %>
-		
-         </div> <!--your content end-->
-    
-    </div> <!--toPopup end-->
-    
-	<div class="loader"></div>
-   	<div id="backgroundPopup"></div> 
+<a href="?page=create">New post</a>
 </div>
 <!-- Main menu end -->
+<% } %>
 
 <hr class="style-six"/>
 
@@ -278,7 +132,35 @@ div#popup_content {
 <!-- Search end -->
 
 <!-- News start -->
+<%
+
+String central_page = request.getParameter("page");
+if ( central_page == null)
+	central_page ="posts";
+
+	if ( central_page.equals("posts") ){
+%>
 <%@include file="posts.jsp" %>
+
+<%
+	}else if (central_page.equals("registration")) {
+%>
+<%@include file="registration.jsp" %>
+
+<%
+	}else if (central_page.equals("create")) {
+%>
+<%@include file="new_post.jsp" %>
+
+
+<%
+	}else {
+%>
+<%@include file="home.jsp" %>
+
+<%
+	}
+%>
 <!-- News end -->
 
 <!-- Page counter start -->

@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page import="java.util.*" %>
+<%@ page import="lv.localhost.MyDay.DAO.AccountDAOImpl" %>
 <%@ page import="lv.localhost.MyDay.DAO.PostDAOImpl" %>
 <%@ page import="lv.localhost.MyDay.Model.Post" %>
 <%@ page session="true" %>
@@ -183,6 +184,7 @@ if (request.getParameter("search") == null){
 List <Post> posts = p.findLatestPosts();
 
 for (int i = 0; i < posts.size(); i++){
+	String postAuthorName = new AccountDAOImpl().getLoginByID( posts.get(i).getAuthorID() );
 %>
 	<div id="news">
    <div id="news_top"><p><a href="?page=post&id=<%=posts.get(i).getPostID()%>"> <%=posts.get(i).getTitle() %> </a></p></div>
@@ -196,7 +198,7 @@ for (int i = 0; i < posts.size(); i++){
 
 <hr class="style-two">
 
-<div id="news_bottom">Date published: <%=posts.get(i).getCreated() %> | Comment ($_COM)</div>
+<div id="news_bottom">Date published: <%=posts.get(i).getCreated() %> by <%=postAuthorName %> | (1) comments</div>
 
 </div>
 <% } 

@@ -20,28 +20,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class PostController {
 
 	private Post p;
-	
-	@RequestMapping(value="/new_post", method = RequestMethod.GET)
-	public String showForm(Model model, HttpServletRequest request, HttpSession session) throws DBException{
-		
-	//	p = new Post();
-		//return new ModelAndView("new_post", "create", p);
-		
-		return "index";
-		
-	}
-	
+
 	@RequestMapping(value="/new_post", method = RequestMethod.POST)
 	public String createPost(Model model, HttpServletRequest request, HttpSession session) throws DBException{
-		
-		//System.out.println("Debug :"+Integer.parseInt( request.getParameter("authorID") ));
+	
 		p = new Post();
 		p.setAuthorID( Integer.parseInt( request.getParameter("authorID") ));
 		p.setTitle(request.getParameter("title"));
 		p.setBody( request.getParameter("body") );
-//		model.addAttribute("title", p.getTitle()); 
-//		model.addAttribute("id", p.getAuthorID());
-//		model.addAttribute("body", p.getBody());
 		
 		PostDAOImpl i = new PostDAOImpl();
 		i.createPost(p);
@@ -75,7 +61,7 @@ public class PostController {
 			pi.updatePost(p);
 			
 		
-		return "index";
+		return "redirect:?page=post&id=" + p.getPostID();
 		
 	}
 }

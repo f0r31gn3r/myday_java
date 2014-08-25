@@ -4,6 +4,8 @@
 <%@ page import="lv.localhost.MyDay.DAO.AccountDAOImpl" %>
 <%@ page import="lv.localhost.MyDay.DAO.PostDAOImpl" %>
 <%@ page import="lv.localhost.MyDay.Model.Post" %>
+<%@ page import="lv.localhost.MyDay.DAO.CommentDAOImpl" %>
+<%@ page import="lv.localhost.MyDay.Model.Comment" %>
 <%@ page session="true" %>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"> </script>
@@ -198,7 +200,14 @@ for (int i = 0; i < posts.size(); i++){
 
 <hr class="style-two">
 
-<div id="news_bottom">Date published: <%=posts.get(i).getCreated() %> by <%=postAuthorName %> | (1) comments</div>
+<%
+int commentCount = 0;
+CommentDAOImpl c = new CommentDAOImpl();
+List <Comment> comments = c.getCommentList(posts.get(i).getPostID());
+commentCount = comments.size();
+%>
+
+<div id="news_bottom">Date published: <%=posts.get(i).getCreated() %> by <%=postAuthorName %> | (<%=commentCount %>) comments</div>
 
 </div>
 <% } 

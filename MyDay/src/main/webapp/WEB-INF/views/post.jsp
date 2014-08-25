@@ -64,7 +64,14 @@ if ( action.equals("display") ){
 		
 		<hr class="style-two">
 		
-		<div id="news_bottom">Date published: <%=p.getCreated() %> | Comment ($_COM)</div>
+		<%
+int commentCount = 0;
+CommentDAOImpl com = new CommentDAOImpl();
+List <Comment> commentss = com.getCommentList(p.getPostID());
+commentCount = commentss.size();
+%>
+		
+		<div id="news_bottom">Date published: <%=p.getCreated() %> | Comments (<%=commentCount %>)</div>
 	
 	</div>
 	

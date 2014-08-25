@@ -5,9 +5,6 @@
 <%@ page import="lv.localhost.MyDay.Model.Post" %>
 <%@ page session="true" %>
 
-<html>
-<head>
-<title>Home</title>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"> </script>
 
   <script>
@@ -179,15 +176,14 @@ div#popup_content {
     */
 }
 </style>
-</head>
-<body>
 <%
 PostDAOImpl p = new PostDAOImpl();
 List <Post> posts = p.findLatestPosts();
+
 for (int i = 0; i < posts.size(); i++){
 %>
 	<div id="news">
-   <div id="news_top"><p><a href="/MyDay/posts/<%=posts.get(i).getPostID()%>"> <%=posts.get(i).getTitle() %> </a></p></div>
+   <div id="news_top"><p><a href="?page=post&id=<%=posts.get(i).getPostID()%>"> <%=posts.get(i).getTitle() %> </a></p></div>
    <hr class="style-two">
    
     
@@ -202,6 +198,3 @@ for (int i = 0; i < posts.size(); i++){
 
 </div>
 <% } %>
-
-</body>
-</html>

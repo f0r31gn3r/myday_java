@@ -1,13 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page import="java.net.URL" %>
+<%@ page import="java.util.Enumeration" %>
 <%@ page import="lv.localhost.MyDay.DAO.PostDAOImpl" %>
 <%@ page import="lv.localhost.MyDay.Model.Post" %>
+<%@ page import="lv.localhost.MyDay.DAO.AccountDAOImpl" %>
 <%@ page session="true" %>
 
-<html>
-<head>
-<title>Home</title>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"> </script>
 
   <script>
@@ -179,45 +177,68 @@ div#popup_content {
     */
 }
 </style>
-</head>
-<body>
+
+
+
 <%
 
 
+Post p = new PostDAOImpl().findPost( Integer.parseInt( request.getParameter("id") )  );
+
+String queryString = request.getQueryString();
+
+String action = request.getParameter("action");
+if ( action == null)
+	action ="display";
+
+
+if ( action.equals("display") ){
 %>
-	<div id="news">
-   <div id="news_top"><p> ${title}</p></div>
-   <a href="" class="topopup">Edit post</a> | <a href="/MyDay/delete_post/${postID}">Delete post</a>
-   <hr class="style-two">
-   
-    
+ <div id="news">
+		<div id="news_top"><p> <%=p.getTitle() %></p></div>
+		<% 
+			if ( session.getAttribute("user") != null)
+			{
+		    	int authorID = new AccountDAOImpl().getIDByLogin( session.getAttribute("user").toString() );
+				if ( p.getAuthorID() == authorID  ) {%>
+					<a href="?<%=queryString  %>&action=edit">Edit post</a> | <a href="?<%=queryString  %>&action=delete">Delete post</a>
+		     <% }
+			}%>
+				
+			<hr class="style-two">
+		<div id="news_text">
+		<%=p.getBody() %>
+		</div>
+		
+		<hr class="style-two">
+		
+		<div id="news_bottom">Date published: <%=p.getCreated() %> | Comment ($_COM)</div>
+	
+	</div>
+<%
+}else if (action.equals("edit")) {
+%>
 
-<div id="news_text">
-${body}
-</div>
+<%
+}else if (action.equals("delete")) {
+	PostDAOImpl i = new PostDAOImpl();
+	i.removePost(p.getPostID());	
+} %>
+	
 
-<hr class="style-two">
 
-<div id="news_bottom">Date published: ${createdDate} | Comment ($_COM)</div>
-
-</div>
-<%  %>
-
-<div id="toPopup"> 
+<!-- <div id="toPopup">  -->
     	
-        <div class="close"></div>
-       	<span class="ecs_tooltip">Press Esc to close <span class="arrow"></span></span>
-		<div id="popup_content"> <!--your content start-->
+<!--         <div class="close"></div> -->
+<!--        	<span class="ecs_tooltip">Press Esc to close <span class="arrow"></span></span> -->
+<!-- 		<div id="popup_content"> your content start -->
 		
-		<%@include file="edit_post.jsp" %>
+<%-- 		<%@include file="edit_post.jsp" %> --%>
 		
 		
-         </div> <!--your content end-->
+<!--          </div> your content end -->
     
-    </div> <!--toPopup end-->
+<!-- </div> toPopup end -->
     
-	<div class="loader"></div>
-   	<div id="backgroundPopup"></div>  
 
-</body>
-</html>
+

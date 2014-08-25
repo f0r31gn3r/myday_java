@@ -1,0 +1,85 @@
+#site {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#header {
+	height: auto;
+	overflow: hidden;
+}
+
+#title {
+	float: left;
+}
+
+#login {
+	border: 1px solid #cecece;
+	border-radius: 10px;
+	box-shadow: 3px 3px 3px #888888;
+	padding: 10px 10 10px 10;
+	width: 30%;
+	margin-left: 5%;
+	margin-right: auto;
+	float: left;
+}
+
+#menu {
+	
+}
+
+#search {
+	
+}
+
+#news {
+	border: 1px solid #cecece;
+	border-radius: 10px;
+	box-shadow: 3px 3px 3px #888888;
+	padding: 10px 10 10px 10;
+	margin: 20px auto 20px auto;
+}
+
+p {
+	text-align: center;
+}
+
+#news_text {
+	margin: 10px 10px 10px 10px;
+	font-size: 14px;
+}
+
+#news_bottom {
+	width: 350px;
+	margin-left: auto;
+	font-size: 12px;
+}
+
+#page_counter {
+	font-size: 12px;
+}
+
+#footer {
+	margin: 10px auto 10px auto;
+	font-size: 12px;
+}
+
+hr.style-six {
+	border: 0;
+	height: 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+hr.style-two {
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0),
+		rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0),
+		rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0),
+		rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0),
+		rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}

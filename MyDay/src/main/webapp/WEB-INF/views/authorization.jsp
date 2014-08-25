@@ -1,26 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
-<html>
-<head>
-	<title>Home</title>
-	<style>
-	.error {
-	padding: 15px;
-	margin-bottom: 20px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	color: #a94442;
-	background-color: #f2dede;
-	border-color: #ebccd1;
-}
-#login-box {
-	width: auto;
-	padding: 20px;
-	margin: 10px auto;
-}
+
+<style type="text/css">
+		<%@include file="/WEB-INF/views/css/authorization.css" %>
 </style>
-</head>
-<body>
+
 <div><P> <font color="red">${badlogin}</font></p></div>
 <div id="login-box">
 <%	if (session.getAttribute("user") == null) {
@@ -40,5 +24,3 @@ else {%>
 	<a href="authorization?logout=true">Log Out</a>
 <% } %>
 </div>
-</body>
-</html>

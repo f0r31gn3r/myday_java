@@ -42,7 +42,7 @@ public class PostController {
 		PostDAOImpl i = new PostDAOImpl();
 		i.removePost(postID);
 		
-		return "index";
+		return "redirect:?page=posts";
 		
 	}
 	

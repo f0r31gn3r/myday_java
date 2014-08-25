@@ -99,7 +99,13 @@ if ( action.equals("display") ){
 <%
 }else if (action.equals("delete")) {
 	PostDAOImpl i = new PostDAOImpl();
-	i.removePost(p.getPostID());	
+	i.removePost(p.getPostID());
+	
+	%>
+	<script>
+		window.location="?page=posts";
+	</script> 
+	<%
 } %>
     
 

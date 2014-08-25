@@ -21,6 +21,12 @@
 				<td><form:input path="login" /></td>
 			</tr>
 			<tr>
+
+				<td><FONT color="red"><form:errors
+							path="password" /></FONT></td>
+
+			</tr>
+			<tr>
 				<td>Password:</td>
 				<td><form:password path="password" /></td>
 			</tr>

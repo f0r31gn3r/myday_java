@@ -62,8 +62,7 @@ public class RegistrationController {
 			e.printStackTrace();
 		}
 		registrationValidation.validate(account, result);
-		System.out.print(result);
-		if(!loginCheck){
+		if(!result.hasErrors()){
 	      model.addAttribute("login", account.getLogin());
 	      model.addAttribute("password",account.getPassword());
 	      model.addAttribute("firstName", account.getFirstName());

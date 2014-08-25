@@ -1,13 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ page import="java.util.*" %>
+<%@ page import="lv.localhost.MyDay.DAO.PostDAOImpl" %>
+<%@ page import="lv.localhost.MyDay.Model.Post" %>
 <%@ page session="true" %>
+
 <html>
 <head>
-	<title>Home</title>
-	
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"> </script>
+<title>Home</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"> </script>
 
   <script>
   jQuery(function($) {
@@ -79,35 +80,8 @@
 		/************** end: functions. **************/
 	}); // jQuery End
   </script>
-	
-	<style type="text/css">
-	#site{
-		width:70%;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	#header{
-	height:auto;
-	overflow:hidden;
-	}
-	#title{
-	float:left;
-	}
-	#login{
-		border:1px solid #cecece;
-		border-radius:10px;
-		box-shadow: 3px 3px 3px #888888;
-		padding: 10px 10 10px 10;
-		width:30%;
-		margin-left:5%;
-		margin-right:auto;
-		float:left;
-	}
-	#menu{
-	}
-	#search{
-	}
-	#news{
+<style type="text/css">
+#news{
 	border:1px solid #cecece;
 		border-radius:10px;
 		box-shadow: 3px 3px 3px #888888;
@@ -126,28 +100,17 @@ p{
 	margin-left:auto;
 	font-size: 12px;
 	}
-	#page_counter{
-	font-size:12px;
-	}
-	#footer{
-		margin: 10px auto 10px auto;
-		font-size:12px;
-	}
-	hr.style-six {
-    border: 0;
-    height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    }
-    hr.style-two {
-    border: 0;
-    height: 1px;
-    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-	}
-	#toPopup {
+	#backgroundPopup {
+    z-index:1;
+    position: fixed;
+    display:none;
+    height:100%;
+    width:100%;
+    background:#000000;
+    top:0px;
+    left:0px;
+}
+#toPopup {
     font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
     background: none repeat scroll 0 0 #FFFFFF;
     border: 10px solid #ccc;
@@ -214,92 +177,31 @@ div#popup_content {
     overflow-y:scroll;
     height:200px
     */
-	</style>
-	
+}
+</style>
 </head>
 <body>
-
-<!-- Site code start -->
-<div id="site">
-
-<!-- Header start -->
-<div id="header">
-
-<!-- Title start -->
-<div id="title">
-<h1>
-	MyDay Java Bootcamp Project  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
-</div>
-<!-- Title end -->
-
-<!-- Login form start -->
-<div id="login">
-<%@include file="authorization.jsp" %>
-</div>
-<!-- Login form end -->
-
-</div>
-<!-- Header end -->
-
-<!-- Main menu start -->
-<div id="menu">
-<a href="#id=new" class="topopup">New post</a>
-<div id="toPopup"> 
-    	
-        <div class="close"></div>
-       	<span class="ecs_tooltip">Press Esc to close <span class="arrow"></span></span>
-		<div id="popup_content"> <!--your content start-->
-		
-		<%@include file="new_post.jsp" %>
-		
-         </div> <!--your content end-->
-    
-    </div> <!--toPopup end-->
-    
-	<div class="loader"></div>
-   	<div id="backgroundPopup"></div> 
-</div>
-<!-- Main menu end -->
-
-<hr class="style-six"/>
-
-<!-- Main body start -->
-<div id="body">
-
-<!-- Search start -->
-<div id="search">
-<form id="search_form">
-<input type="text" value="Search"> <button type="submit">Search</button>
-</form>
-</div>
-<!-- Search end -->
-
-<!-- News start -->
-<%@include file="posts.jsp" %>
-<!-- News end -->
-
-<!-- Page counter start -->
-<div id="page_counter">
-<p>[1][2][3]</p>
-</div>
-<!-- Page counter end -->
-
-</div>
-<!-- Main body end -->
-
-<hr class="style-six"/>
-
-<!-- Footer start -->
-<div id="footer">
-<p>All rights reserved (c) 2014 Riga, LV</p>
-</div>
-<!-- Footer end -->
-
-</div>
-<!-- Site code end -->
+<%
+PostDAOImpl p = new PostDAOImpl();
+List <Post> posts = p.findLatestPosts();
+for (int i = 0; i < posts.size(); i++){
+%>
+	<div id="news">
+   <div id="news_top"><p><a href="/MyDay/posts/<%=posts.get(i).getPostID()%>"> <%=posts.get(i).getTitle() %> </a></p></div>
+   <hr class="style-two">
    
+    
+
+<div id="news_text">
+<%=posts.get(i).getBody() %>
+</div>
+
+<hr class="style-two">
+
+<div id="news_bottom">Date published: <%=posts.get(i).getCreated() %> | Comment ($_COM)</div>
+
+</div>
+<% } %>
+
 </body>
 </html>

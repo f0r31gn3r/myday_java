@@ -1,7 +1,5 @@
 package lv.localhost.MyDay.Controllers;
 
-import javax.servlet.http.HttpServletRequest;
-
 import lv.localhost.MyDay.DAO.PostDAOImpl;
 import lv.localhost.MyDay.Model.Post;
 import lv.localhost.MyDay.common.DBException;
@@ -53,16 +51,32 @@ public class PostController {
 		
 	}
 	
-	@RequestMapping(value="/edit_post/{postID}", method = RequestMethod.GET)
-	public ModelAndView editForm(@PathVariable ("postID") int postID, Model model) throws DBException{
+	@RequestMapping(value="posts/{postID}", method=RequestMethod.GET)
+	public String showPost(@PathVariable ("postID") int postID, Model model) throws DBException{
 		
 		p = new Post();
 		PostDAOImpl i = new PostDAOImpl();
 		p = i.findPost(postID);
 		
-		model.addAttribute("postid", p.getPostID());
+		model.addAttribute("authorID", p.getAuthorID());
+		model.addAttribute("title", p.getTitle());
+		model.addAttribute("body", p.getBody());
+		model.addAttribute("createdDate", p.getCreated());
 		
-		return new ModelAndView("edit_post", "edit", p);
+		return "post";
+	}
+	
+	@RequestMapping(value="/post/{postID}", method = RequestMethod.GET)
+	public String editForm(@PathVariable ("postID") int postID, Model model) throws DBException{
+		
+		p = new Post();
+		PostDAOImpl i = new PostDAOImpl();
+		p = i.findPost(postID);
+		i.updatePost(p);
+		
+		model.addAttribute("authorID", p.getAuthorID());
+		
+		return "index";
 		
 	}
 	

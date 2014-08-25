@@ -107,11 +107,16 @@ p{
 </div>
 <!-- Header end -->
 
+
+<% if (session.getAttribute("user") != null) {
+	
+%>
 <!-- Main menu start -->
 <div id="menu">
-<a href="/MyDay/new_post">New post</a>
+<a href="?page=create">New post</a>
 </div>
 <!-- Main menu end -->
+<% } %>
 
 <hr class="style-six"/>
 
@@ -135,12 +140,17 @@ if ( central_page == null)
 
 	if ( central_page.equals("posts") ){
 %>
-<%@include file="post.jsp" %>
+<%@include file="posts.jsp" %>
 
 <%
 	}else if (central_page.equals("registration")) {
 %>
 <%@include file="registration.jsp" %>
+
+<%
+	}else if (central_page.equals("create")) {
+%>
+<%@include file="new_post.jsp" %>
 
 
 <%

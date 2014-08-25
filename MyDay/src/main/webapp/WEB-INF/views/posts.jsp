@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page import="java.util.Enumeration" %>
+<%@ page import="java.util.*" %>
 <%@ page import="lv.localhost.MyDay.DAO.PostDAOImpl" %>
 <%@ page import="lv.localhost.MyDay.Model.Post" %>
 <%@ page session="true" %>
@@ -182,43 +182,27 @@ div#popup_content {
 </head>
 <body>
 <%
-
-
-
+PostDAOImpl p = new PostDAOImpl();
+List <Post> posts = p.findLatestPosts();
+System.out.println("zzz"+posts.size());
+for (int i = 0; i < posts.size(); i++){
 %>
 	<div id="news">
-   <div id="news_top"><p> ${title}</p></div>
-   <a href="">Edit post</a> | <a href="/MyDay/delete_post/">Delete post</a>
+   <div id="news_top"><p><a href="/MyDay/posts/<%=posts.get(i).getPostID()%>"> <%=posts.get(i).getTitle() %> </a></p></div>
    <hr class="style-two">
    
     
 
 <div id="news_text">
-${body}
+<%=posts.get(i).getBody() %>
 </div>
 
 <hr class="style-two">
 
-<div id="news_bottom">Date published: ${createdDate} | Comment ($_COM)</div>
+<div id="news_bottom">Date published: <%=posts.get(i).getCreated() %> | Comment ($_COM)</div>
 
 </div>
-<%  %>
-
-<div id="toPopup"> 
-    	
-        <div class="close"></div>
-       	<span class="ecs_tooltip">Press Esc to close <span class="arrow"></span></span>
-		<div id="popup_content"> <!--your content start-->
-		
-		<%@include file="edit_post.jsp" %>
-		
-		
-         </div> <!--your content end-->
-    
-    </div> <!--toPopup end-->
-    
-	<div class="loader"></div>
-   	<div id="backgroundPopup"></div>  
+<% } %>
 
 </body>
 </html>

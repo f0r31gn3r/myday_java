@@ -14,20 +14,13 @@
 	border-color: #ebccd1;
 }
 #login-box {
-	width: 300px;
+	width: auto;
 	padding: 20px;
-	margin: 100px auto;
-	background: #fff;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	border: 1px solid #000;
+	margin: 10px auto;
 }
 </style>
 </head>
 <body>
-<h1>
-	 Authorization:
-</h1>
 <div><P> <font color="red">${badlogin}</font></p></div>
 <div id="login-box">
 <%	if (session.getAttribute("user") == null) {

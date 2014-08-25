@@ -11,8 +11,7 @@ CharacterCount = function(TextArea,FieldToCount){
 	var myLabel = document.getElementById(FieldToCount); 
 	if(!myField || !myLabel){return false}; // catches errors
 	var MaxChars =  1000;
-	if(!MaxChars){MaxChars =  myField.getAttribute('maxlength') ; }; 	if(!MaxChars){return false};
-	
+	if(!MaxChars){return false};
 	var remainingChars =   MaxChars - myField.value.length;
 	myLabel.innerHTML = remainingChars+" Characters Remaining of Maximum "+MaxChars;
 }

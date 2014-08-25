@@ -10,14 +10,15 @@ CharacterCount = function(TextArea,FieldToCount){
 	var myField = document.getElementById(TextArea);
 	var myLabel = document.getElementById(FieldToCount); 
 	if(!myField || !myLabel){return false}; // catches errors
-	var MaxChars =  myField.maxLengh;
+	var MaxChars =  1000;
 	if(!MaxChars){MaxChars =  myField.getAttribute('maxlength') ; }; 	if(!MaxChars){return false};
-	var remainingChars =   MaxChars - myField.value.length
-	myLabel.innerHTML = remainingChars+" Characters Remaining of Maximum "+MaxChars
+	
+	var remainingChars =   MaxChars - myField.value.length;
+	myLabel.innerHTML = remainingChars+" Characters Remaining of Maximum "+MaxChars;
 }
 
 //SETUP!!
-setInterval(function(){CharacterCount('body','CharCountLabel1')},55);
+setInterval(function(){CharacterCount('text_body','CharCountLabel1')},55);
 </script>
 
 
@@ -39,7 +40,7 @@ setInterval(function(){CharacterCount('body','CharCountLabel1')},55);
     <tr>
         <td></td>
         <td>
-        	<textarea rows="4" cols="50" id="body" name="body" maxlength="1000"></textarea>
+        	<textarea rows="4" cols="50" id="text_body" name="body" maxlength="1000"></textarea>
         </td>
        
     </tr>

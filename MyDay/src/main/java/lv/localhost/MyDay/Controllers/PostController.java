@@ -36,7 +36,7 @@ public class PostController {
 		
 	}
 	
-	@RequestMapping(value="/delete_post/{postID}", method = RequestMethod.GET)
+	/*@RequestMapping(value="/delete_post/{postID}", method = RequestMethod.GET)
 	public String deletePost(@PathVariable ("postID") int postID, ModelMap model) throws DBException{
 		
 		PostDAOImpl i = new PostDAOImpl();
@@ -44,7 +44,7 @@ public class PostController {
 		
 		return "redirect:?page=posts";
 		
-	}
+	}*/
 	
 	@RequestMapping(value="/post_edit", method = RequestMethod.POST)
 	public String editPost(Model model, HttpServletRequest request, HttpSession session) throws DBException{

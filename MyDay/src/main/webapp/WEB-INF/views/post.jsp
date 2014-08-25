@@ -4,6 +4,8 @@
 <%@ page import="lv.localhost.MyDay.DAO.PostDAOImpl" %>
 <%@ page import="lv.localhost.MyDay.Model.Post" %>
 <%@ page import="lv.localhost.MyDay.DAO.AccountDAOImpl" %>
+<%@ page import="lv.localhost.MyDay.DAO.CommentDAOImpl" %>
+<%@ page import="lv.localhost.MyDay.Model.Comment" %>
 <%@ page session="true" %>
 
 <style type="text/css">
@@ -96,7 +98,11 @@ if ( action.equals("display") ){
 }else if (action.equals("delete")) {
 	PostDAOImpl i = new PostDAOImpl();
 	i.removePost(p.getPostID());
-	
+	CommentDAOImpl c = new CommentDAOImpl();
+	List <Comment> comments = c.getCommentList(p.getPostID());
+	for (int j = 0; j < comments.size(); j++){
+		c.removeComment(comments.get(j).getCommentID());
+	}
 	%>
 	<script>
 		window.location="?page=posts";

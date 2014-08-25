@@ -121,7 +121,7 @@ public class PostDAOImpl extends DAOImpl implements PostDAO{
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()){		
-				result = new Post(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(5), resultSet.getString(6));
+				result = new Post(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getInt(5), resultSet.getString(6));
 			}		
 		} catch (Throwable e) {
 			System.out.println("Exception while execute PostDAOImpl.findPosts() ");

@@ -94,7 +94,12 @@ p{
 	MyDay Java Bootcamp Project  
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+<%
+Date date = new Date();
+String s = date.toString();
+%>
+
+<P>  The time on the server is <%= s %>. </P>
 </div>
 <!-- Title end -->
 
@@ -108,15 +113,13 @@ p{
 <!-- Header end -->
 
 
-<% if (session.getAttribute("user") != null) {
-	
-%>
+
 <!-- Main menu start -->
 <div id="menu">
-<a href="?page=create">New post</a>
+<a href="/MyDay">Main page</a><% if (session.getAttribute("user") != null) {%> | <a href="?page=create">New post</a><% } %>
 </div>
 <!-- Main menu end -->
-<% } %>
+
 
 <hr class="style-six"/>
 

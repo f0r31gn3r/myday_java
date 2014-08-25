@@ -72,15 +72,9 @@ if ( action.equals("display") ){
 %>
 
 <form method="post" action="/MyDay/post_edit">
+<input type="hidden" name="postAuthID" value="<%= p.getAuthorID() %>"/>
+<input type="hidden" name="postPostID" value="<%= p.getPostID() %>"/>
 <table>
-<tr>
-        <td>PostID</td>
-        <td><input type="text" name="postPostID" value="<%= p.getPostID() %>"/></td>
-    </tr>
-    <tr>
-        <td>AuthorID</td>
-        <td><input type="text" name="postAuthID" value="<%= p.getAuthorID() %>"/></td>
-    </tr>
     <tr>
         <td>Title</td>
         <td><input type="text" name="postTitle" value="<%= p.getTitle() %>"/></td>

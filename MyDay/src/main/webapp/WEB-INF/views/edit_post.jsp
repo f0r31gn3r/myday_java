@@ -1,27 +1,41 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
     <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>  
+    <%@ page import="lv.localhost.MyDay.DAO.PostDAOImpl" %>
+<%@ page import="lv.localhost.MyDay.Model.Post" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 
-<form:form method="POST" commandName="edit" action="/MyDay/edited">
-   <table>
-    <tr>
-        <td><form:label path="authorID">AuthorID</form:label></td>
-        <td><form:input type="text" path="authorID"/></td>
+<%
+PostDAOImpl pi = new PostDAOImpl();
+Post p2 = new Post();
+
+p2 = pi.findPost(5);
+int authorID = p2.getAuthorID();
+String title = p2.getTitle();
+String body = p2.getBody();
+int postID = p2.getPostID();
+
+%>
+
+<form>
+<table>
+<tr>
+        <td>PostID</td>
+        <td><input type="text" value="<%= postID %>"/></td>
     </tr>
     <tr>
-        <td><form:label path="title">Title</form:label></td>
-        <td><form:input type="text" path="title"/></td>
+        <td>AuthorID</td>
+        <td><input type="text" value="<%= authorID %>"/></td>
     </tr>
     <tr>
-        <td><form:label path="body">ID</form:label></td>
-        <td><form:textarea rows="4" cols="50" id="body" path="body" maxlength="1000"/></td>
+        <td>Title</td>
+        <td><input type="text" value="<%= title %>"/></td>
+    </tr>
+    <tr>
+        <td>Text</td>
+        <td><textarea rows="10" cols="100" id="body"><%= body %></textarea></td>
        
     </tr>
     <tr>
@@ -30,7 +44,8 @@
         </td>
     </tr>
 </table>  
-</form:form>
-
+</form>
+        	
+        
 </body>
 </html>

@@ -188,56 +188,10 @@ for (int i = 0; i < posts.size(); i++){
 %>
 	<div id="news">
    <div id="news_top"><p> <%=posts.get(i).getTitle() %> </p></div>
-   <a href="#?id=<%=posts.get(i).getPostID()%>" class="topopup">Edit post</a> | <a href="/MyDay/delete_post/<%=posts.get(i).getPostID()%>">Delete post</a>
+   <a href="id=<%=posts.get(i).getPostID()%>" class="topopup">Edit post</a> | <a href="/MyDay/delete_post/<%=posts.get(i).getPostID()%>">Delete post</a>
    <hr class="style-two">
    
-   <div id="toPopup"> 
-    	
-        <div class="close"></div>
-       	<span class="ecs_tooltip">Press Esc to close <span class="arrow"></span></span>
-		<div id="popup_content"> <!--your content start-->
-		
-            <%
-PostDAOImpl pi = new PostDAOImpl();
-Post p2 = new Post();
-
-p2 = pi.findPost(posts.get(i).getPostID());
-int authorID = p2.getAuthorID();
-String title = p2.getTitle();
-String body = p2.getBody();
-int postID = p2.getPostID();
-
-%>
-
-<form>
-<table>
-    <tr>
-        <td>AuthorID</td>
-        <td><input type="text" value="<%= authorID %>"/></td>
-    </tr>
-    <tr>
-        <td>Title</td>
-        <td><input type="text" value="<%= title %>"/></td>
-    </tr>
-    <tr>
-        <td>Text</td>
-        <td><textarea rows="10" cols="100" id="body"><%= body %></textarea></td>
-       
-    </tr>
-    <tr>
-        <td colspan="2">
-            <input type="submit" value="Submit"/>
-        </td>
-    </tr>
-</table>  
-</form>
-        	
-        </div> <!--your content end-->
     
-    </div> <!--toPopup end-->
-    
-	<div class="loader"></div>
-   	<div id="backgroundPopup"></div>
 
 <div id="news_text">
 <%=posts.get(i).getBody() %>
@@ -249,6 +203,21 @@ int postID = p2.getPostID();
 
 </div>
 <% } %>
+
+<div id="toPopup"> 
+    	
+        <div class="close"></div>
+       	<span class="ecs_tooltip">Press Esc to close <span class="arrow"></span></span>
+		<div id="popup_content"> <!--your content start-->
+		
+		<%@include file="edit_post.jsp" %>
+		
+         </div> <!--your content end-->
+    
+    </div> <!--toPopup end-->
+    
+	<div class="loader"></div>
+   	<div id="backgroundPopup"></div>  
 
 </body>
 </html>

@@ -39,7 +39,7 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 		return result;
 	}
 
-	/*@Override
+	@Override
 	public String getLoginByID(int id) throws DBException {
 		Connection connection = null;
 		String result = "";
@@ -65,7 +65,7 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 			closeConnection(connection);
 		}
 		return result;
-	}*/
+	}
 
 	@Override
 	public int createAccount(Account a) throws DBException {

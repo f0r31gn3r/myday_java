@@ -74,7 +74,7 @@ public interface AccountDAO {
 	 */
 	Account initAccount(String login) throws DBException;
 
-	// String getLoginByID(int id) throws DBException;
+	 String getLoginByID(int id) throws DBException;
 
 	// List<Account> getAllAccounts() throws DBException;
 

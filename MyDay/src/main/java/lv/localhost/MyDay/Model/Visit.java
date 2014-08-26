@@ -68,4 +68,5 @@ public class Visit {
 	public void setAccountID(int accountID) {
 		this.accountID = accountID;
 	}
+	
 }

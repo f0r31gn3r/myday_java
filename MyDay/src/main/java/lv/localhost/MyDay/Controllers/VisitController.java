@@ -21,8 +21,7 @@ public class VisitController {
 	public String visitGet(Model model, HttpServletRequest request,
 			HttpSession session) {
 
-		String url = request.getRequestURL().toString(); // + "?" +
-															// request.getQueryString();
+		String url = request.getRequestURL().toString();
 
 		if (request.getQueryString() != null)
 			url.concat("?" + request.getQueryString());
@@ -54,7 +53,7 @@ public class VisitController {
 		try {
 			new VisitDAOImpl().createVisit(visit);
 		} catch (DBException e) {
-			System.out.println("Exception during /visit controller visitGet");
+			System.out.println("Exception during visit controller visitGet");
 			e.printStackTrace();
 		}
 

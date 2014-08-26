@@ -17,53 +17,38 @@ public class LogInController {
 	@RequestMapping(value = "/authorization", method = RequestMethod.GET)
 	public String authorizationGet(Model model, HttpServletRequest request,
 			HttpSession session) {
-		
-		
-        if (request.getParameter("logout") != null)
-        	if (request.getParameter("logout").equals("true")){	
-        		session.invalidate();
-        	}
-        		
+
+		if (request.getParameter("logout") != null)
+			if (request.getParameter("logout").equals("true")) {
+				session.invalidate();
+			}
 		return "index";
 	}
-	
+
 	@RequestMapping(value = "/authorization", method = RequestMethod.POST)
 	public String authorizationPost(Model model, HttpServletRequest request,
 			HttpSession session) {
 		/*** logging in ***/
 		if (session.getAttribute("user") == null) {
-			
+
 			boolean loginAttempt = false;
 			try {
-				loginAttempt = new AccountDAOImpl().accountExists(request.getParameter("login"), request.getParameter("password"));
+				loginAttempt = new AccountDAOImpl().accountExists(
+						request.getParameter("login"),
+						request.getParameter("password"));
 			} catch (DBException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 			if (loginAttempt) {
 				session.setAttribute("user", request.getParameter("login"));
-				return "index"; 
+				return "index";
 			} else {
-				model.addAttribute("authorization_message", "Wrong login or password");
+				model.addAttribute("authorization_message",
+						"Wrong login or password");
 				return "index";
 			}
-
-			
-//			try {
-//				loginAttempt = new LoginDAOImpl().checkUser(request.getParameter("login"), request.getParameter("password"));
-//				if (loginAttempt) {
-//					session.setAttribute("user", request.getParameter("login"));
-//				} else {
-//					model.addAttribute("authorization_message", "Wrong login or password");
-//				}
-//			} catch (DBException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			};
-			
-
 		}
-
 		return "index";
 	}
 

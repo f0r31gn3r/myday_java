@@ -3,7 +3,6 @@ package lv.localhost.MyDay.Controllers;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import lv.localhost.MyDay.DAO.AccountDAOImpl;
 import lv.localhost.MyDay.DAO.CommentDAOImpl;
 import lv.localhost.MyDay.Model.Comment;
 import lv.localhost.MyDay.common.DBException;
@@ -23,8 +22,6 @@ public class CommentController {
 			HttpSession session) throws DBException {
 
 		if (request.getParameter("delete") != null) {
-			// TODO : check if user logged in and is owner of the comment
-			// provided
 			CommentDAOImpl i = new CommentDAOImpl();
 			i.removeComment(Integer.parseInt(request.getParameter("delete")));
 		}
@@ -36,18 +33,17 @@ public class CommentController {
 			HttpSession session) throws DBException {
 
 		c = new Comment();
-		
-		//int authorID = new AccountDAOImpl().getIDByLogin( session.getAttribute("user").toString() );
+
 		int authorID = Integer.parseInt(request.getParameter("authorID"));
-		int postID = Integer.parseInt(request.getParameter("postID"));		
-		c.setAuthor( authorID );
+		int postID = Integer.parseInt(request.getParameter("postID"));
+		c.setAuthor(authorID);
 		c.setPostID(postID);
 		c.setBody(request.getParameter("body"));
 
 		CommentDAOImpl i = new CommentDAOImpl();
 		i.createComment(c.getPostID(), c.getAuthor(), c.getBody());
 
-		return "redirect:?page=post&id="+postID;
+		return "redirect:?page=post&id=" + postID;
 	}
 
 }

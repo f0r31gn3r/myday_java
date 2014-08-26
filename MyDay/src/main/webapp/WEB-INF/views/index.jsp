@@ -113,7 +113,7 @@ if ( central_page == null)
 	}else {
 		System.out.println("debug :" + central_page);
 %>
-<%@include file="home.jsp" %>
+<%@include file="posts.jsp" %>
 
 <%
 	}

@@ -1,9 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="true"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<html>
-<head>
-<title>Registration</title>
+
 <style>
 .error {
 	width: auto;
@@ -16,8 +14,6 @@
 	border-color: #ebccd1;
 }
 </style>
-</head>
-<body>
 	<h1>Registration</h1>
 
 	<form name="input" action="registration" method="post">
@@ -80,7 +76,3 @@
 		<input type="submit" value="Register"> | <a href="/MyDay/">Go
 			Home</a><br>
 	</form>
-
-
-</body>
-</html>

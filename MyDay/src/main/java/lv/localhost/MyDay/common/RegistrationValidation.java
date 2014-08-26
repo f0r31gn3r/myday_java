@@ -1,11 +1,9 @@
-package lv.localhost.MyDay.Controllers;
+package lv.localhost.MyDay.common;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
-import lv.localhost.MyDay.DAO.AccountDAOImpl;
 import lv.localhost.MyDay.Model.Account;
-import lv.localhost.MyDay.common.DBException;
 
 @Component("registrationValidator")
 public class RegistrationValidation {

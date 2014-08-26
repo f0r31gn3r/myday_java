@@ -37,6 +37,8 @@ p{
 
 Post p = new PostDAOImpl().findPost( Integer.parseInt( request.getParameter("id") )  );
 
+String postAuthorName = new AccountDAOImpl().getLoginByID( p.getAuthorID() );
+
 String queryString = request.getQueryString();
 
 String action = request.getParameter("action");
@@ -65,13 +67,15 @@ if ( action.equals("display") ){
 		<hr class="style-two">
 		
 		<%
+		
+				
 int commentCount = 0;
 CommentDAOImpl com = new CommentDAOImpl();
 List <Comment> commentss = com.getCommentList(p.getPostID());
 commentCount = commentss.size();
 %>
 		
-		<div id="news_bottom">Date published: <%=p.getCreated() %> | Comments (<%=commentCount %>)</div>
+		<div id="news_bottom">Date published: <%=p.getCreated() %> by <%=postAuthorName %> | Comments (<%=commentCount %>)</div>
 	
 	</div>
 	

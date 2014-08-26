@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class SpringExceptionExample {
+public class SpringException {
 	@ExceptionHandler(ResourceNotFoundException.class)
     public String handleResourceNotFoundException() {
         return "notfound";

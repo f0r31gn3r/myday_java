@@ -1,4 +1,4 @@
-package lv.localhost.MyDay.Controllers;
+package lv.localhost.MyDay.common;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

@@ -1,3 +1,4 @@
+@charset "utf-8";
 body {
 	background:#f4f4f4;
 	border-left:2px solid #d3d3d3;
@@ -88,4 +89,24 @@ hr.style-two {
 		rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 	background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0),
 		rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+
+/***************************
+These are the styles for auhorization.jsp
+***************************/
+.error {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+
+#login-box {
+	width: auto;
+	padding: 20px;
+	margin: 10px auto;
 }

@@ -1,10 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
 
-<style type="text/css">
-		<%@include file="/WEB-INF/views/css/authorization.css" %>
-</style>
-
 <div><P> <font color="red">${badlogin}</font></p></div>
 <div id="login-box">
 <%	if (session.getAttribute("user") == null) {

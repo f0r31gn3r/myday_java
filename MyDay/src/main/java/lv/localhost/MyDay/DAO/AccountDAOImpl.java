@@ -71,7 +71,6 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 	public int createAccount(Account a) throws DBException {
 		Connection connection = null;
 		int result = 0;
-
 		int createdRowCount = 0;
 
 		try {
@@ -448,19 +447,22 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 		}
 		return result;
 	}
-	
+
 	@Override
-	public List<Account> getAllAccounts(int from, int amount) throws DBException {
+	public List<Account> getAllAccounts(int from, int amount)
+			throws DBException {
 		Connection connection = null;
 		List<Account> result = new ArrayList<Account>();
 
-		if (from < 0) from =0;
-		
+		if (from < 0)
+			from = 0;
+
 		try {
 			connection = getConnection();
 
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("select ACCOUNT_ID, LOGIN, PASSWORD, FIRST_NAME, LAST_NAME, CREATED, LAST_VISITED from ACCOUNT LIMIT "+ (from-1) +"," + amount);
+					.prepareStatement("select ACCOUNT_ID, LOGIN, PASSWORD, FIRST_NAME, LAST_NAME, CREATED, LAST_VISITED from ACCOUNT LIMIT "
+							+ (from - 1) + "," + amount);
 			ResultSet rs = preparedStatement.executeQuery();
 
 			Account a;

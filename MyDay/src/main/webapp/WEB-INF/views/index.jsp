@@ -113,7 +113,10 @@ if ( central_page == null)
 	}else {
 		System.out.println("debug :" + central_page);
 %>
-<%@include file="posts.jsp" %>
+<%-- <%@include file="notfound.jsp" %> --%>
+<script>
+	window.location="404";
+</script>
 
 <%
 	}

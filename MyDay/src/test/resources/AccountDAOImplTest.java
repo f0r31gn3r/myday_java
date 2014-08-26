@@ -55,7 +55,7 @@ public class AccountDAOImplTest extends TestCase {
 		fail("Not yet implemented");
 	}
 
-	public void testCreateAccountStringStringStringString() {
+/*	public void testCreateAccountStringStringStringString() {
 		try {
 			AccountDAO a = new AccountDAOImpl();
 			int i = a.createAccount("user21", "pass", "fname", "lname");
@@ -69,7 +69,7 @@ public class AccountDAOImplTest extends TestCase {
 			e.printStackTrace();
 			fail("Not yet implemented");
 		}
-	}
+	}*/
 	
 	public void testAccountExistsString() {
 		try {
@@ -101,7 +101,7 @@ public class AccountDAOImplTest extends TestCase {
 		fail("Not yet implemented");
 	}
 
-	public void testRemoveAccountString() {
+/*	public void testRemoveAccountString() {
 		try {
 			AccountDAO a = new AccountDAOImpl();
 			a.removeAccount("user21");
@@ -113,7 +113,7 @@ public class AccountDAOImplTest extends TestCase {
 			e.printStackTrace();
 			fail("Not yet implemented");
 		}
-	}
+	}*/
 
 	public void testRemoveAccountInt() {
 		fail("Not yet implemented");
@@ -123,7 +123,7 @@ public class AccountDAOImplTest extends TestCase {
 		fail("Not yet implemented");
 	}
 
-	public void testUpdateAccountIntStringStringStringString() {
+	/*public void testUpdateAccountIntStringStringStringString() {
 		try {
 			AccountDAO a = new AccountDAOImpl();
 			
@@ -140,7 +140,7 @@ public class AccountDAOImplTest extends TestCase {
 			e.printStackTrace();
 			fail("Not yet implemented");
 		}
-	}
+	}*/
 
 	public void testInitAccountString() {
 		fail("Not yet implemented");
@@ -150,7 +150,7 @@ public class AccountDAOImplTest extends TestCase {
 		fail("Not yet implemented");
 	}
 
-	public void testGetAllAccounts() {
+/*	public void testGetAllAccounts() {
 		try {
 			AccountDAO a = new AccountDAOImpl();
 			List<Account> list = a.getAllAccounts();
@@ -162,9 +162,9 @@ public class AccountDAOImplTest extends TestCase {
 			e.printStackTrace();
 			fail("Not yet implemented");
 		}
-	}
+	}*/
 
-	public void testGetAllAccountsIntInt() {
+/*	public void testGetAllAccountsIntInt() {
 		try {
 			AccountDAO a = new AccountDAOImpl();
 			List<Account> list = a.getAllAccounts(1,2);
@@ -177,6 +177,6 @@ public class AccountDAOImplTest extends TestCase {
 			e.printStackTrace();
 			fail("Not yet implemented");
 		}
-	}
+	}*/
 
 }

@@ -106,7 +106,7 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 		return result;
 	}
 
-	@Override
+	/*@Override
 	public int createAccount(String login, String password, String firstName,
 			String lastName) throws DBException {
 
@@ -147,9 +147,9 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 			closeConnection(connection);
 		}
 		return result;
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public boolean removeAccount(Account a) throws DBException {
 		Connection connection = null;
 
@@ -175,9 +175,9 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 			closeConnection(connection);
 		}
 		return (deletedRowCount > 0 ? true : false);
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public boolean removeAccount(String login) throws DBException {
 		Connection connection = null;
 
@@ -201,9 +201,9 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 			closeConnection(connection);
 		}
 		return (deletedRowCount > 0 ? true : false);
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public boolean removeAccount(int accountID) throws DBException {
 		Connection connection = null;
 
@@ -228,8 +228,8 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 		}
 		return (deletedRowCount > 0 ? true : false);
 	}
-
-	@Override
+*/
+	/*@Override
 	public boolean updateAccount(Account a) throws DBException {
 		Connection connection = null;
 
@@ -259,9 +259,9 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 			closeConnection(connection);
 		}
 		return (updatedRowCount > 0 ? true : false);
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public boolean updateAccount(int accountID, String password,
 			String firstName, String lastName) throws DBException {
 		Connection connection = null;
@@ -292,7 +292,7 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 			closeConnection(connection);
 		}
 		return (updatedRowCount > 0 ? true : false);
-	}
+	}*/
 
 	@Override
 	public Account initAccount(String login) throws DBException {
@@ -325,7 +325,7 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 		return result;
 	}
 
-	@Override
+	/*@Override
 	public Account initAccount(int accountID) throws DBException {
 		Connection connection = null;
 		Account result = null;
@@ -356,7 +356,7 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 		return result;
 
 	}
-
+*/
 	@Override
 	public boolean accountExists(String login) throws DBException {
 		Connection connection = null;
@@ -417,7 +417,7 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 		return result;
 	}
 
-	@Override
+/*	@Override
 	public List<Account> getAllAccounts() throws DBException {
 		Connection connection = null;
 		List<Account> result = new ArrayList<Account>();
@@ -446,9 +446,9 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 			closeConnection(connection);
 		}
 		return result;
-	}
+	}*/
 
-	@Override
+/*	@Override
 	public List<Account> getAllAccounts(int from, int amount)
 			throws DBException {
 		Connection connection = null;
@@ -482,5 +482,5 @@ public class AccountDAOImpl extends DAOImpl implements AccountDAO {
 			closeConnection(connection);
 		}
 		return result;
-	}
+	}*/
 }

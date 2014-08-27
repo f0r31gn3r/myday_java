@@ -70,7 +70,7 @@
 				.get(i).getAuthor());
 %>
 
-<div id="news">
+<div id="comment_box">
 
 	<hr class="style-two">
 	<div id="news_text">
@@ -113,7 +113,7 @@
 <form name="input" action="comment" method="post">
 	<input name="authorID" type="hidden" value="<%=authorID%>"/>
 	<input name="postID" type="hidden" value="<%=postID%>"/>
-	<textarea rows="4" cols="50" id="comment_body" name="body"
+	<textarea id="comment" rows="4" cols="50" id="comment_body" name="body"
 		maxlength="200" placeholder="Write Your Comment Here ..."></textarea>
 	<input type="submit" value="Add Comment"/>
 </form>

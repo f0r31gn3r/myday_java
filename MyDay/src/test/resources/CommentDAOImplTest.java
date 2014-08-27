@@ -66,9 +66,9 @@ public class CommentDAOImplTest extends TestCase {
 		try {
 			CommentDAO c = new CommentDAOImpl();
 			int i = c.createComment(2, 1, "TestComment");
-			List<Comment> list = c.getCommentList(1);
+			List<Comment> list = c.getCommentList(2);
 			assertEquals(list.size(), 3);
-			assertEquals(list.get(1).getBody(), "Com22222");
+			assertEquals(list.get(0).getBody(), "I luv spiderman");
 			List<Comment> list1 = c.getCommentList(1245);
 			List<Comment> list2 = new ArrayList<Comment>();
 			assertTrue(list1.equals(list2));

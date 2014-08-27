@@ -81,26 +81,6 @@ public class HomeController {
 		/**
 		 *  End Of Registering visit
 		 */
-		
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-				DateFormat.LONG, locale);
-
-		AccountDAOImpl a = new AccountDAOImpl();
-		int result = 0;
-
-		try {
-			result = a.getIDByLogin("Noob");
-		} catch (DBException e) {
-			System.out.println("Exception during main loop");
-			e.printStackTrace();
-		}
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
-		model.addAttribute("test", result);
 
 		return "index";
 	}

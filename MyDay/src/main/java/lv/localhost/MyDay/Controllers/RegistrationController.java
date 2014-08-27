@@ -16,14 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RegistrationController {
 	private Account account;
 
-	@RequestMapping(value = "/registration", method = RequestMethod.GET)
-	public String registr(Model model, HttpServletRequest request,
-			HttpSession session) throws DBException {
-
-		return "index";
-
-	}
-
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public String addStudent(Model model, HttpServletRequest request,
 			HttpSession session) {

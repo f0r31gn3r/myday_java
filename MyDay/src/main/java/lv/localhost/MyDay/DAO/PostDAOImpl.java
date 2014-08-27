@@ -172,7 +172,7 @@ public class PostDAOImpl extends DAOImpl implements PostDAO {
 			connection = getConnection();
 
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("SELECT POST_ID, TITLE, CREATED, AUTHOR, BODY FROM POSTS WHERE BODY like ?");
+					.prepareStatement("SELECT POST_ID, TITLE, CREATED, AUTHOR, BODY FROM POSTS WHERE BODY like ? ORDER BY CREATED DESC");
 			preparedStatement.setString(1, "%" + key + "%");
 
 			ResultSet resultSet = preparedStatement.executeQuery();

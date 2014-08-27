@@ -27,7 +27,9 @@ public class PostDAOImpl extends DAOImpl implements PostDAO {
 
 			createdRowCount = preparedStatement.executeUpdate();
 			
-			// for test
+			/*
+			 * This part is user in JUnit test for 
+			 */
 			
 			preparedStatement = connection.prepareStatement("SELECT * FROM POSTS ORDER BY POST_ID DESC LIMIT 1");
 			

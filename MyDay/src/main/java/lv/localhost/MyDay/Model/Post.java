@@ -14,6 +14,13 @@ public class Post {
 	public Post() {
 
 	}
+	
+	public Post(String title, int authorID,
+			String body) {
+		setTitle(title);
+		setAuthorID(authorID);
+		setBody(body);
+	}
 
 	public Post(int postID, String title, Date created, int authorID,
 			String body) {

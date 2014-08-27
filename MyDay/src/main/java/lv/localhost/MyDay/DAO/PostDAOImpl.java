@@ -26,6 +26,18 @@ public class PostDAOImpl extends DAOImpl implements PostDAO {
 			preparedStatement.setString(3, p.getBody());
 
 			createdRowCount = preparedStatement.executeUpdate();
+			
+			// for test
+			
+			preparedStatement = connection.prepareStatement("SELECT * FROM POSTS ORDER BY POST_ID DESC LIMIT 1");
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			if (resultSet.next()){
+				p.setPostID(resultSet.getInt(1));
+				p.setCreated(resultSet.getTimestamp(3));
+			}
+			
 
 		} catch (Throwable e) {
 			System.out

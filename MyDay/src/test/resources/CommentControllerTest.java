@@ -1,6 +1,7 @@
-import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -8,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import lv.localhost.MyDay.Controllers.CommentController;
 import lv.localhost.MyDay.DAO.CommentDAOImpl;
 import lv.localhost.MyDay.Model.Comment;
-import lv.localhost.MyDay.common.DBException;
 
 import org.junit.After;
 import org.junit.Before;
@@ -16,18 +16,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:**/root-context.xml" })
@@ -55,8 +49,14 @@ public class CommentControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		MockitoAnnotations.initMocks(this);
-		mockMvc = MockMvcBuilders.standaloneSetup(commentController).build();
+		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setPrefix("/WEB-INF/views/");
+        viewResolver.setSuffix(".jsp");
+        commentController = new CommentController();
+
+        mockMvc = MockMvcBuilders.standaloneSetup(commentController)
+                                 .setViewResolvers(viewResolver)
+                                 .build();
 	}
 
 	@After
@@ -66,9 +66,9 @@ public class CommentControllerTest {
 
 	@Test
 	public void testShowForm() throws Exception {
-		  mockMvc.perform(get("/comment"))
-		  .andExpect(view().name("comment"));
-         // .andExpect(forwardedUrl("comment"));
+		  mockMvc.perform(get("/comment")
+		  .param("delete", "21"))
+		  .andExpect(status().isOk());
 	}
 
 /*	@RequestMapping(value = "/comment", method = RequestMethod.GET)

@@ -1,5 +1,5 @@
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -90,6 +90,37 @@ public class RegistrationControllerTest {
 						.param("firstName", "John")
 						.param("lastName", "Smith"))
 				.andExpect(status().isOk());
+		mockMvc.perform(
+				post("/registration")
+						.param("login", username)
+						.param("password", "qwerty")
+						.param("passwordCheck", "qwerty123")
+						.param("firstName", "John")
+						.param("lastName", "Smith"))
+				.andExpect(status().isOk())
+		.andExpect(model().attribute("pswrdMatch", "Passwords does not match"));
+		mockMvc.perform(
+				post("/registration")
+						.param("login", "Noob")
+						.param("password", "qwerty")
+						.param("passwordCheck", "qwerty")
+						.param("firstName", "John")
+						.param("lastName", "Smith"))
+				.andExpect(status().isOk())
+		.andExpect(model().attribute("AccAlreadyExist", "Username is already in use"));
+		mockMvc.perform(
+				post("/registration")
+						.param("login", "ttt")
+						.param("password", "")
+						.param("passwordCheck", "")
+						.param("firstName", "")
+						.param("lastName", ""))
+				.andExpect(status().isOk())
+		.andExpect(model().attribute("emptyFN", "Please enter your First Name"))
+		.andExpect(model().attribute("emptyLN", "Please enter your Surname"))
+		.andExpect(model().attribute("lengthL", "Username must be from 4 to 20 symbols length"))
+		.andExpect(model().attribute("emptyP", "Password must not be empty"));
+		
 	}
 
 }

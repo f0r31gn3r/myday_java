@@ -1,4 +1,5 @@
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -80,8 +81,19 @@ public class LoginControllerTest {
 				post("/authorization")
 						.param("login", "Noob")
 						.param("password", "123"))
+				.andExpect(status().isOk());
+		mockMvc.perform(
+				post("/authorization")
+						.param("login", "Noob")
+						.param("password", "1233"))
 				.andExpect(status().isOk())
-				.andExpect(redirectedUrl(null));
+				.andExpect(model().attribute("authorization_message", "Wrong login or password"));
+		mockMvc.perform(
+				post("/authorization")
+						.param("login", "Noob1")
+						.param("password", "123"))
+				.andExpect(status().isOk())
+				.andExpect(model().attribute("authorization_message", "Wrong login or password"));
 	}
 
 }

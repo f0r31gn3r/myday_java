@@ -19,9 +19,9 @@
 					.getLoginByID(posts.get(i).getAuthorID());
 %>
 <div id="news">
-	<div id="news_top">
+	<div>
 		<p>
-			<a href="?page=post&id=<%=posts.get(i).getPostID()%>"> <%=posts.get(i).getTitle()%>
+			<a id="post_a" href="?page=post&id=<%=posts.get(i).getPostID()%>"> <%=posts.get(i).getTitle()%>
 			</a>
 		</p>
 	</div>
@@ -59,9 +59,9 @@
 		for (int i = 0; i < results.size(); i++) {
 %>
 <div id="news">
-	<div id="news_top">
+	<div>
 		<p>
-			<a href="?page=post&id=<%=results.get(i).getPostID()%>"> <%=results.get(i).getTitle()%>
+			<a id="post_a" href="?page=post&id=<%=results.get(i).getPostID()%>"> <%=results.get(i).getTitle()%>
 			</a>
 		</p>
 	</div>

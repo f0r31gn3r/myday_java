@@ -51,7 +51,7 @@ String s = date.toString();
 
 <!-- Main menu start -->
 <div id="menu">
-<a href="/MyDay">Main page</a><% if (session.getAttribute("user") != null) {%> | <a href="?page=create">New post</a><% } %>
+<a href="/MyDay">Main page</a><% if (session.getAttribute("user") != null) {%> | <a href="?page=create">New post</a><% } %><br>
 </div>
 <!-- Main menu end -->
 
@@ -64,11 +64,8 @@ String s = date.toString();
 <!-- Search start -->
 <div id="search">
 
-<script>
 
-</script>
-
-<input type="text" id="textSearch" value="Search"> 
+<input type="text" id="textSearch" placeholder="Search"> 
 <button onclick="window.location='?page=posts&search='+document.getElementById('textSearch').value; ">Search</button>
 
 </div>

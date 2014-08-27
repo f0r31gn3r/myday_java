@@ -23,8 +23,8 @@ if ( action == null)
 if ( action.equals("display") ){
 %>
 <div id="news">
-	<div id="news_top">
-		<p>
+	<div>
+		<p  id="post_a">
 			<%=p.getTitle() %></p>
 	</div>
 	<% 
@@ -32,8 +32,9 @@ if ( action.equals("display") ){
 			{
 		    	int authorID = new AccountDAOImpl().getIDByLogin( session.getAttribute("user").toString() );
 				if ( p.getAuthorID() == authorID  ) {%>
+	
 	<a href="?<%=queryString  %>&action=edit">Edit post</a> | <a
-		href="?<%=queryString  %>&action=delete">Delete post</a>
+		 href="?<%=queryString  %>&action=delete">Delete post</a>
 	<% }
 			}%>
 
@@ -62,8 +63,8 @@ commentCount = commentss.size();
 	</div>
 
 </div>
-
 <%@include file="comment.jsp"%>
+
 <%
 }else if (action.equals("edit")) {
 %>

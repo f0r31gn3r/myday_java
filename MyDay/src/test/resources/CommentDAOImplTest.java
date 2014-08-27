@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.AssertionFailedError;
@@ -68,8 +69,9 @@ public class CommentDAOImplTest extends TestCase {
 			List<Comment> list = c.getCommentList(1);
 			assertEquals(list.size(), 3);
 			assertEquals(list.get(1).getBody(), "Com22222");
-			//List<Comment> list1 = c.getCommentList(1245);
-		//	asserNull(list1);
+			List<Comment> list1 = c.getCommentList(1245);
+			List<Comment> list2 = new ArrayList<Comment>();
+			assertTrue(list1.equals(list2));
 			c.removeComment(i);
 
 		} catch (AssertionFailedError e) {

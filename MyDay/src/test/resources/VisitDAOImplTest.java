@@ -8,7 +8,6 @@ import lv.localhost.MyDay.DAO.VisitDAOImpl;
 import lv.localhost.MyDay.Model.Visit;
 import lv.localhost.MyDay.common.DBException;
 
-
 public class VisitDAOImplTest extends TestCase {
 	
 	private Connection conn;

@@ -7,7 +7,6 @@ import lv.localhost.MyDay.common.DBException;
 
 public interface CommentDAO {
 
-	
 	/**
 	 * This method will attempt to create and insert a Comment into the
 	 * database. The method will throw an DBException if errors during execution
@@ -24,7 +23,6 @@ public interface CommentDAO {
 	 */
 	int createComment(int postID, int author, String body) throws DBException;
 
-	
 	/**
 	 * This method will attempt to remove a Comment from database. The method
 	 * will throw an DBException if errors during execution are encountered.
@@ -37,7 +35,6 @@ public interface CommentDAO {
 	 */
 	boolean removeComment(int commentID) throws DBException;
 
-	
 	/**
 	 * Returns a specific Comment instance represented by the specified ID or
 	 * null if no match is found. The method will throw an DBException if errors
@@ -50,7 +47,6 @@ public interface CommentDAO {
 	 */
 	Comment getCommentByID(int commentID) throws DBException;
 
-	
 	/**
 	 * Returns a list of Comment objects that contain the specified Post ID.
 	 * This will return an empty List if no match is found. The method will

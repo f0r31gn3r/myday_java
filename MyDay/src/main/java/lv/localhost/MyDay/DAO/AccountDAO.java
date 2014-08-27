@@ -1,7 +1,5 @@
 package lv.localhost.MyDay.DAO;
 
-import java.util.List;
-
 import lv.localhost.MyDay.Model.Account;
 import lv.localhost.MyDay.common.DBException;
 
@@ -81,23 +79,16 @@ public interface AccountDAO {
 	 */
 	Account initAccount(String login) throws DBException;
 
-	// List<Account> getAllAccounts() throws DBException;
+	/**
+	 * This method will attempt to remove an Account from database. The method
+	 * will throw an DBException if errors during execution are encountered.
+	 * 
+	 * @param accountID
+	 *            - ID of the Account witch must be removed
+	 * 
+	 * @return TRUE if Account is removed from the database successfully or
+	 *         FALSE if Account with such ID is not found
+	 */
+	boolean removeAccount(int accountID) throws DBException;
 
-	// List<Account> getAllAccounts(int from, int amount) throws DBException;
-
-	// int createAccount(String login, String password, String firstName,
-	// String lastName) throws DBException;
-
-	// boolean removeAccount(Account a) throws DBException;
-
-	// boolean removeAccount(String login) throws DBException;
-
-	// boolean removeAccount(int accountID) throws DBException;
-
-	// boolean updateAccount(Account a) throws DBException;
-
-	// boolean updateAccount(int accountID, String password, String firstName,
-	// String lastName) throws DBException;
-
-	// Account initAccount(int accountID) throws DBException;
 }

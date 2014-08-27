@@ -89,6 +89,4 @@ public class Account {
 		this.lastVisited = lastVisited;
 	}
 	
-	
-	
 }

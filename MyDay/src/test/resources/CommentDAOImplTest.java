@@ -2,9 +2,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import junit.framework.AssertionFailedError;
 import junit.framework.TestCase;
 import lv.localhost.MyDay.DAO.CommentDAO;
@@ -12,14 +9,12 @@ import lv.localhost.MyDay.DAO.CommentDAOImpl;
 import lv.localhost.MyDay.Model.Comment;
 import lv.localhost.MyDay.common.DBException;
 
-
 public class CommentDAOImplTest extends TestCase {
-	
+
 	private Connection conn;
 	private String url;
 	private String user;
 	private String pass;
-	Log logger = LogFactory.getLog(getClass());
 
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -38,19 +33,26 @@ public class CommentDAOImplTest extends TestCase {
 			this.conn.close();
 			System.out.println("Connection closed!");
 		} catch (AssertionFailedError e) {
-//			this.logger.error(Percentage.setFailedCount(1, e.getMessage()));
-//			this.logger.error(Percentage.setFailedCount(true, 6));
+			fail();
 		}
 	}
 
-	public void testCreateComment() {
+	public void testCreateCommentandGetCommentByID() {
 		try {
 			CommentDAO c = new CommentDAOImpl();
-			int i = c.createComment(2, 1, "TestComment");
-			assertEquals(c.getCommentByID(4).getPostID(), 2);
-			assertEquals(c.getCommentByID(4).getBody(), "TestComment");
-			assertEquals(i, 4);
+			Comment com = new Comment();
+			assertTrue(com != null);
+			assertFalse(com == null);
 			
+			int i = c.createComment(2, 1, "TestComment");
+			assertEquals(c.getCommentByID(i).getCommentID(), i);
+			assertEquals(c.getCommentByID(i).getPostID(), 2);
+			assertEquals(c.getCommentByID(i).getAuthor(), 1);
+			assertEquals(c.getCommentByID(i).getBody(), "TestComment");
+			assertTrue(c.getCommentByID(i).getCreated() != null);
+			assertFalse(c.getCommentByID(i).getCreated() == null);
+			c.removeComment(i);
+
 		} catch (AssertionFailedError e) {
 			fail();
 		} catch (DBException e) {
@@ -58,13 +60,18 @@ public class CommentDAOImplTest extends TestCase {
 			fail("Not yet implemented");
 		}
 	}
-	
+
 	public void testGetCommentList() {
 		try {
 			CommentDAO c = new CommentDAOImpl();
+			int i = c.createComment(2, 1, "TestComment");
 			List<Comment> list = c.getCommentList(1);
 			assertEquals(list.size(), 3);
-			
+			assertEquals(list.get(1).getBody(), "Com22222");
+			//List<Comment> list1 = c.getCommentList(1245);
+		//	asserNull(list1);
+			c.removeComment(i);
+
 		} catch (AssertionFailedError e) {
 			fail();
 		} catch (DBException e) {
@@ -76,9 +83,11 @@ public class CommentDAOImplTest extends TestCase {
 	public void testRemoveComment() {
 		try {
 			CommentDAO c = new CommentDAOImpl();
-			assertTrue(c.removeComment(4));
-			assertFalse(c.removeComment(4));
 			
+			int i = c.createComment(2, 1, "TestComment");
+			assertTrue(c.removeComment(i));
+			assertFalse(c.removeComment(i));
+
 		} catch (AssertionFailedError e) {
 			fail();
 		} catch (DBException e) {

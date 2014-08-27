@@ -41,8 +41,7 @@ public class CommentDAOImpl extends DAOImpl implements CommentDAO {
 			preparedStatement.close();
 
 		} catch (Throwable e) {
-			System.out
-					.println("Exception while execute CommentDAOImpl.createComment() ");
+			System.out					.println("Exception while execute CommentDAOImpl.createComment() ");
 			e.printStackTrace();
 			throw new DBException(e);
 		} finally {

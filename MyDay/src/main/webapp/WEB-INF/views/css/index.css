@@ -4,9 +4,15 @@ body {
 	border-left:2px solid #d3d3d3;
 	border-right:2px solid #d3d3d3;
 }
-
+input[type="text"] {
+    width: 160px;
+}
+input[type="password"] {
+    width: 160px;
+}
 h1 {
 	color:#3F3F3F;
+	font-size:14px;
 }
 #site {
 	width: 70%;

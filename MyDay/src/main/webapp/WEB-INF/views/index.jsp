@@ -34,7 +34,7 @@ Date date = new Date();
 String s = date.toString();
 %>
 
-<P>  The time on the server is <%= s %>. </P>
+<P>   <%= s %>. </P>
 </div>
 <!-- Title end -->
 
